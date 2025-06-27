@@ -7,6 +7,7 @@ const suggestions = [
 var textarea = document.getElementById('textarea')
 
 textarea.addEventListener('keyup', (e) => {
-  var result = suggestions.filter(el => el.startsWith(textarea.value))
+  var textInput = textarea.value.toLowerCase();
+  var result = suggestions.filter(el => el.startsWith(textInput))
   console.log(result)
 })
