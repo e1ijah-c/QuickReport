@@ -8,7 +8,8 @@ var textarea = document.getElementById('textarea')
 
 
 
-textarea.addEventListener('keyup', (e) => {
+textarea.addEventListener('input', (e) => {
   var textInput = textarea.value.toLowerCase();
+
   console.log(textInput)
 })
