@@ -4,12 +4,19 @@ const suggestions = [
                       "I'm a good programmer"
                     ]
 
+var pastInput = []
+
 var textarea = document.getElementById('textarea')
 
 
 
-textarea.addEventListener('input', (e) => {
-  var textInput = textarea.value.toLowerCase();
+textarea.addEventListener('keydown', (event) => {
+  var key = event.key
+  pastInput.push(key)
+  
+  if (pastInput.length > 10) {
+    pastInput.pop()
+  } 
 
-  console.log(textInput)
+  console.log(pastInput)
 })
