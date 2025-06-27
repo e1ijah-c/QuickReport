@@ -8,8 +8,17 @@
   </head>
   <body>
     
-    <textarea placeholder="Enter text here..."></textarea>
+    <!-- <textarea type="text" name="country" id="country" tabindex="1" class="autocomplete-input" autocomplete="off" placeholder="Enter text here..."></textarea> -->
+
+    <p>
+        <label for="country">Country:</label><br>
+        <input type ="text" name="country" id="country" tabindex="1" class="autocomplete-input" autocomplete="off">
+    </p>
 
     <script type="module" src="script.js"></script>
+    <script>
+        initACJSInputs();
+        ACJS.country = ["Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar"];
+        </script>
   </body>
 </html>
