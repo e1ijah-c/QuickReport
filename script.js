@@ -12,11 +12,13 @@ var textarea = document.getElementById('textarea')
 
 textarea.addEventListener('keydown', (event) => {
   var key = event.key
-  pastInput.push(key)
   
   if (pastInput.length > 10) {
     pastInput.pop()
-  } 
-
+    pastInput.push(key)
+  } else {
+    pastInput.push(key)
+  }
+  console.log(pastInput.length)
   console.log(pastInput)
 })
