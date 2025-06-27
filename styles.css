@@ -1,6 +1,6 @@
 body, html {
         margin: 0;
-        padding: 0;
+        padding: 10px; 
         height: 100%;
     }
 
@@ -9,4 +9,5 @@ textarea {
     height: 100vh; /* vh is a unit relative to the viewport height */
     resize: none; /* prevent resizing by the user */
     box-sizing: border-box; /* include padding and border in the element's total width and height */
+    border: 0;
 }
