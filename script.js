@@ -15,9 +15,9 @@ textarea.addEventListener('keydown', (event) => {
   
   if (pastInput.length > 10) {
     pastInput.pop()
-    pastInput.push(key)
+    pastInput.unshift(key)
   } else {
-    pastInput.push(key)
+    pastInput.unshift(key)
   }
   console.log(pastInput.length)
   console.log(pastInput)
