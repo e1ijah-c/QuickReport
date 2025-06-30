@@ -4,23 +4,38 @@ const suggestions = [
                       "I'm a good programmer"
                     ]
 
-var pastInput = []
 
 var myInput = document.getElementById('myInput')
+var anchorInput = document.getElementById('cursorAnchor')
 
 
-
-myInput.addEventListener('keydown', (event) => {
+myInput.addEventListener('keyup', (event) => {
+  var input = ''
   var key = event.key
   
-  if (pastInput.length > 10) {
-    pastInput.shift()
-    pastInput.push(key)
-  } else {
-    pastInput.push(key)
+  /* test to check only if a character key was pressed */
+  if (key.length > 1) {
+    return;
   }
-  console.log(pastInput.length)
-  console.log(pastInput)
+
+  if (event.key === ' ') {
+    input = ''
+  } else {
+    input = input + key
+  }
+  UpdateAnchorValue(input)
+  console.log(input)
+  console.log(anchorInput.value)
 })
 
-/*change logic to instead concate a string => makes it easier to check for matches */
+function UpdateAnchorValue(newInput) {
+  anchorInput.value = newInput;
+}
+
+/*
+- change logic to instead concate a string => makes it easier to check for matches 
+- make it so that the string clears everytime space is entered to signify new word
+- change max no. of characters
+- make the current div a text field and make its value = to the value of the current string
+- use that as the input for the autocomplete but change its behaviour to update the textarea instead using the on select event?
+*/

@@ -25,8 +25,11 @@ textarea {
 #cursorAnchor {
     position: absolute;
     background-color: transparent;
-    width: 2px;
-    height: 14px; /* Adjust based on font-size */
-    top: 5px; /* Adjust based on input padding */
     pointer-events: none; /* Allows clicks to pass through to the input */
+
+    clip: rect(1px 1px 1px 1px);
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
 }
