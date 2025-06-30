@@ -5,11 +5,11 @@ const suggestions = [
                     ]
 
 
-var myInput = document.getElementById('myInput')
+var textarea = document.getElementById('myInput')
 var anchorInput = document.getElementById('cursorAnchor')
 
 
-myInput.addEventListener('keyup', (event) => {
+textarea.addEventListener('keyup', (event) => {
   var input = ''
   var key = event.key
   
