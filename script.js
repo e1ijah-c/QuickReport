@@ -22,3 +22,5 @@ textarea.addEventListener('keydown', (event) => {
   console.log(pastInput.length)
   console.log(pastInput)
 })
+
+/*change logic to instead concate a string => makes it easier to check for matches */
