@@ -15,8 +15,9 @@
     </div>
 
     <script>
-      $( "#cursorAnchor" ).autocomplete({
-      source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
+      $( "#myInput" ).autocomplete({
+        position: { of: "#cursorAnchor" }, 
+        source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
       });
     </script>
 
