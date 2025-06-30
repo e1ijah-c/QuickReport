@@ -13,15 +13,20 @@ textarea {
 }
 
  .input-container {
+    width: 100%;
+    height: 100vh;
+    resize: none;
+    box-sizing: border-box; /* include padding and border in the element's total width and height */
+    border: 0;
     position: relative;
     display: inline-block; /* To contain the absolute positioned anchor */
 }
 
 #cursorAnchor {
     position: absolute;
-    background-color: blue;
+    background-color: transparent;
     width: 2px;
-    height: 18px; /* Adjust based on font-size */
+    height: 14px; /* Adjust based on font-size */
     top: 5px; /* Adjust based on input padding */
     pointer-events: none; /* Allows clicks to pass through to the input */
 }
