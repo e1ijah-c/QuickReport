@@ -9,14 +9,50 @@
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
   </head>
   <body>
-    
-    <textarea id="textarea" placeholder="Enter text here..."></textarea> 
+    <div class="input-container">
+      <textarea id="myInput" placeholder="Enter text here..."></textarea> 
+      <div id="cursorAnchor"></div>
+    </div>
 
     <script>
-      $( "#textarea" ).autocomplete({
+      $( "#cursorAnchor" ).autocomplete({
       source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
       });
     </script>
+
+    <script>
+      const myInput = document.getElementById('myInput');
+      const cursorAnchor = document.getElementById('cursorAnchor');
+
+      myInput.addEventListener('input', updateCursorAnchor);
+      myInput.addEventListener('keyup', updateCursorAnchor); // Also update on keyup for better responsiveness
+      myInput.addEventListener('click', updateCursorAnchor); // Update if cursor is moved by clicking
+
+      function updateCursorAnchor() {
+        const cursorPosition = myInput.selectionStart;
+        const inputText = myInput.value;
+        const textBeforeCursor = inputText.substring(0, cursorPosition);
+
+        // Create a temporary span to measure text width
+        const tempSpan = document.createElement('span');
+        tempSpan.style.visibility = 'hidden';
+        tempSpan.style.position = 'absolute';
+        tempSpan.style.whiteSpace = 'pre'; // Preserve whitespace
+        tempSpan.style.font = getComputedStyle(myInput).font; // Match input font
+        tempSpan.textContent = textBeforeCursor;
+        document.body.appendChild(tempSpan);
+
+        const textWidth = tempSpan.offsetWidth;
+        document.body.removeChild(tempSpan);
+
+        // Position the anchor
+        cursorAnchor.style.left = `${textWidth + myInput.offsetLeft + 5}px`; // Add input's left offset and padding
+  }
+
+  // Initial positioning
+  updateCursorAnchor();
+</script>
+
     <script src="script.js"></script>
   </body>
 </html>

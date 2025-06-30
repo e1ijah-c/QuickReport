@@ -11,3 +11,17 @@ textarea {
     box-sizing: border-box; /* include padding and border in the element's total width and height */
     border: 0;
 }
+
+ .input-container {
+    position: relative;
+    display: inline-block; /* To contain the absolute positioned anchor */
+}
+
+#cursorAnchor {
+    position: absolute;
+    background-color: blue;
+    width: 2px;
+    height: 18px; /* Adjust based on font-size */
+    top: 5px; /* Adjust based on input padding */
+    pointer-events: none; /* Allows clicks to pass through to the input */
+}
