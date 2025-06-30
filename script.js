@@ -6,11 +6,11 @@ const suggestions = [
 
 var pastInput = []
 
-var textarea = document.getElementById('textarea')
+var myInput = document.getElementById('myInput')
 
 
 
-textarea.addEventListener('keydown', (event) => {
+myInput.addEventListener('keydown', (event) => {
   var key = event.key
   
   if (pastInput.length > 10) {
