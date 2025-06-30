@@ -9,7 +9,7 @@ var textarea = document.getElementById('myInput')
 var anchorInput = document.getElementById('cursorAnchor')
 
 
-textarea.addEventListener('keyup', (event) => {
+textarea.addEventListener('keydown', (event) => {
   var input = ''
   var key = event.key
   
