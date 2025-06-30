@@ -19,13 +19,13 @@ textarea.addEventListener('keydown', (event) => {
   }
 
   if (event.key === ' ') {
-    input = ''
+    input = '';
   } else {
-    input = input + key
+    input += key;
   }
   UpdateAnchorValue(input)
-  console.log(input)
-  console.log(anchorInput.value)
+  console.log("full input: ", input)
+  console.log("anchor text box value: ", anchorInput.value)
 })
 
 function UpdateAnchorValue(newInput) {
