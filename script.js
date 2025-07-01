@@ -18,7 +18,6 @@ textarea.addEventListener('keydown', (event) => {
       input = input.slice(0, -1);
       console.log("backspace pressed")
     }
-    return;
   }
 
   if (key === ' ') {
@@ -32,6 +31,19 @@ textarea.addEventListener('keydown', (event) => {
   console.log("full input: ", input)
   console.log("anchor text box value: ", anchorInput.value)
 })
+
+$( "#cursorAnchor" ).autocomplete({
+  autoFocus: true, 
+  position: { of: "#cursorAnchor" }, 
+  source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
+  select: function( event, ui ) {
+    currentPos = event.target.selectionStart();
+    console.log(currentPos)
+    newInput = textarea.value.slice(0, currentPos) + ui.object.value + textarea.value.slice(currentPos)
+    textarea.value = newInput
+  }
+});
+
 
 function UpdateAnchorValue(newInput) {
   anchorInput.value = newInput;
