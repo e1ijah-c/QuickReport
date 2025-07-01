@@ -19,7 +19,7 @@ textarea.addEventListener('keydown', (event) => {
 
   if (event.key === ' ') {
     input = ''; 
-  } if (event.key === 'Backspace') {
+  } else if (event.key === 'Backspace') {
     input = input.slice(0, -1)
     console.log("backspace pressed")
   } else {
