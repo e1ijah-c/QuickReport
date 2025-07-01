@@ -20,7 +20,7 @@ textarea.addEventListener('keydown', (event) => {
   if (event.key === ' ') {
     input = ''; 
   } if (event.key === 'Backspace') {
-    input.slice(0, -1)
+    input = input.slice(0, -1)
   } else {
     combinedInput = input + key;
     input = combinedInput;
