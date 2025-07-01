@@ -21,6 +21,7 @@ textarea.addEventListener('keydown', (event) => {
     input = ''; 
   } if (event.key === 'Backspace') {
     input = input.slice(0, -1)
+    console.log("backspace pressed")
   } else {
     combinedInput = input + key;
     input = combinedInput;
