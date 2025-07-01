@@ -17,19 +17,25 @@ textarea.addEventListener('keydown', (event) => {
     if (key === 'Backspace') {
       input = input.slice(0, -1);
       console.log("backspace pressed")
+      UpdateAnchorValue(input)
+      console.log("full input: ", input)
+      console.log("anchor text box value: ", anchorInput.value)
     }
+    return
   }
 
   if (key === ' ') {
     input = ''; 
+    UpdateAnchorValue(input)
+    console.log("full input: ", input)
+    console.log("anchor text box value: ", anchorInput.value)
   } else {
     combinedInput = input + key;
     input = combinedInput;
+    UpdateAnchorValue(input)
+    console.log("full input: ", input)
+    console.log("anchor text box value: ", anchorInput.value)
   }
-
-  UpdateAnchorValue(input)
-  console.log("full input: ", input)
-  console.log("anchor text box value: ", anchorInput.value)
 })
 
 $( "#cursorAnchor" ).autocomplete({
