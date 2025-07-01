@@ -7,10 +7,9 @@ const suggestions = [
 
 var textarea = document.getElementById('myInput')
 var anchorInput = document.getElementById('cursorAnchor')
-
+var input = ''
 
 textarea.addEventListener('keydown', (event) => {
-  var input = ''
   var key = event.key
   
   /* test to check only if a character key was pressed */
