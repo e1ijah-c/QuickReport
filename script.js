@@ -22,6 +22,7 @@ textarea.addEventListener('keydown', (event) => {
     input = '';
   } else {
     combinedInput = input + key;
+    console.log(combinedInput)
     input = combinedInput;
      UpdateAnchorValue(input)
      console.log("full input: ", input)
