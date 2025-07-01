@@ -14,18 +14,20 @@ textarea.addEventListener('keydown', (event) => {
   
   /* test to check only if a character key was pressed */
   if (key.length > 1) {
+    if (key === 'Backspace') {
+      input = input.slice(0, -1);
+      console.log("backspace pressed")
+    }
     return;
   }
 
-  if (event.key === ' ') {
+  if (key === ' ') {
     input = ''; 
-  } else if (event.key === 'Backspace') {
-    input = input.slice(0, -1)
-    console.log("backspace pressed")
   } else {
     combinedInput = input + key;
     input = combinedInput;
   }
+
   UpdateAnchorValue(input)
   console.log("full input: ", input)
   console.log("anchor text box value: ", anchorInput.value)
