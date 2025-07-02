@@ -12,11 +12,17 @@
   <body>
 
     <textarea id="myInput" placeholder="Enter text here..."></textarea> 
+    <div id="cursorAnchor"></div>
     
     <script>
       document.querySelector('textarea').addEventListener('input', function () {
         var caret = getCaretCoordinates(this, this.selectionEnd);
         console.log('(top, left, height) = (%s, %s, %s)', caret.top, caret.left, caret.height);
+        curAnc = document.getElementById("cursorAnchor")
+        var xOffset = 20
+        var yOffset = 40
+        curAnc.style.top = caret.top + yOffset + "px"
+        curAnc.style.left = caret.left + xOffset + "px"
       })
     </script>
 

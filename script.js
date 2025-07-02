@@ -69,7 +69,7 @@ $( function() {
   })
   .autocomplete({
   autoFocus: true, 
-  //osition: { of: "#redmarker" }, 
+  position: { of: "#cursorAnchor" }, 
   source: function( request, response ) {
     // delegate back to autocomplete, but extract the last term
     if (input != "") {
