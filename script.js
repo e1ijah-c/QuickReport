@@ -66,8 +66,10 @@ $( function() {
   //source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
   source: function( request, response ) {
     // delegate back to autocomplete, but extract the last term
-    response( $.ui.autocomplete.filter(
-    availableTags, input ));
+    if (input != "") {
+      response( $.ui.autocomplete.filter(
+      availableTags, input ));
+    }
   },
   focus: function() {
     // prevent value inserted on focus
@@ -84,6 +86,7 @@ $( function() {
 
     //add selected item and rejoin whole input together again
     this.value = pretext + ui.item.value + posttext
+    return false;
 
     // // remove the current input
     // terms.pop();
