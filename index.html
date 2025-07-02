@@ -10,35 +10,9 @@
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
   </head>
   <body>
-    <div class="input-container">
-      <textarea id="myInput" placeholder="Enter text here..."></textarea> 
-      <div id="cursorAnchor"> </div>
-    </div>
 
-    <script>
-    const textArea = document.getElementById('myInput');
-    const cursoranchor = document.getElementById('cursorAnchor')
-    var xOffset = 0
-    var yOffset = 18
-
-    textArea.addEventListener('input', () => {
-        const cursorPos = textArea.selectionStart;
-        const text = textArea.value.substring(0, cursorPos);
-        const lines = text.split('\n');
-        const currentLine = lines.length - 1;
-        const currentCol = lines[currentLine].length;
-
-        const style = getComputedStyle(textArea);
-        const fontSize = parseInt(style.fontSize);
-        const lineHeight = parseInt(style.lineHeight);
-
-        const x = currentCol * fontSize;
-        const y = currentLine * lineHeight;
-
-        cursoranchor.style.left = x + xOffset + "px"
-        cursoranchor.style.top = y + yOffset + "px"
-    });
-</script>
+    <textarea id="myInput" placeholder="Enter text here..."></textarea> 
+    
 
   <script src="script.js"></script>
 </html>

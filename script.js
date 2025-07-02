@@ -63,14 +63,13 @@ $( function() {
   $( "#myInput" )
   .on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( textarea ).autocomplete( "instance" ).menu.active ) {
+            $( this ).autocomplete( "instance" ).menu.active ) {
           event.preventDefault();
         }
   })
   .autocomplete({
   autoFocus: true, 
-  position: { of: "#cursorAnchor" }, 
-  //source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
+  //osition: { of: "#redmarker" }, 
   source: function( request, response ) {
     // delegate back to autocomplete, but extract the last term
     if (input != "") {
@@ -85,34 +84,22 @@ $( function() {
     return false;
   },
   select: function( event, ui ) {
-    var curPos = textarea.selectionStart
-    var pretext = textarea.value.slice(0, curPos - input.length)
-    var posttext = textarea.value.slice(curPos)
+    var curPos = this.selectionStart
+    var pretext = this.value.substring(0, curPos - input.length)
+    var posttext = this.value.substring(curPos)
     //add selected item and rejoin whole input together again
-    textarea.value = pretext + ui.item.value + posttext
+    this.value = pretext + ui.item.value + " " + posttext
+    input = ""
+    console.log("full input: ", input)
     return false;
     }
   });
 }); 
 
-function split( val ) {
-  return val.split( /,\s*/ );
-}
 
-function extractLast( term ) {
-  return split( term ).pop();
-}
+var getCaretCoordinates = require('textarea-caret');
 
-function UpdateTextValue(newInput) {
-  textarea.value = newInput;
-  console.log("full input: ", input)
-  console.log("anchor text box value: ", autoinput.value)
-}
-
-/*
-- change logic to instead concate a string => makes it easier to check for matches 
-- make it so that the string clears everytime space is entered to signify new word
-- change max no. of characters
-- make the current div a text field and make its value = to the value of the current string
-- use that as the input for the autocomplete but change its behaviour to update the textarea instead using the on select event?
-*/
+document.querySelector('textarea').addEventListener('input', function () {
+  var caret = getCaretCoordinates(this, this.selectionEnd);
+  console.log('(top, left, height) = (%s, %s, %s)', caret.top, caret.left, caret.height);
+})
