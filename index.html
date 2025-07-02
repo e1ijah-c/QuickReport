@@ -5,47 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OCC Reports</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
   </head>
   <body>
     <div class="input-container">
       <textarea id="myInput" placeholder="Enter text here..."></textarea> 
-      <input id="cursorAnchor"> 
+      <div id="cursorAnchor"> </div>
     </div>
 
     <script>
-      const myInput = document.getElementById('myInput');
-      const cursorAnchor = document.getElementById('cursorAnchor');
+    const textArea = document.getElementById('myInput');
+    const cursoranchor = document.getElementById('cursorAnchor')
+    var xOffset = 0
+    var yOffset = 18
 
-      myInput.addEventListener('input', updateCursorAnchor);
-      myInput.addEventListener('keyup', updateCursorAnchor); // Also update on keyup for better responsiveness
-      myInput.addEventListener('click', updateCursorAnchor); // Update if cursor is moved by clicking
+    textArea.addEventListener('input', () => {
+        const cursorPos = textArea.selectionStart;
+        const text = textArea.value.substring(0, cursorPos);
+        const lines = text.split('\n');
+        const currentLine = lines.length - 1;
+        const currentCol = lines[currentLine].length;
 
-      function updateCursorAnchor() {
-        const cursorPosition = myInput.selectionStart;
-        const inputText = myInput.value;
-        const textBeforeCursor = inputText.substring(0, cursorPosition);
+        const style = getComputedStyle(textArea);
+        const fontSize = parseInt(style.fontSize);
+        const lineHeight = parseInt(style.lineHeight);
 
-        // Create a temporary span to measure text width
-        const tempSpan = document.createElement('span');
-        tempSpan.style.visibility = 'hidden';
-        tempSpan.style.position = 'absolute';
-        tempSpan.style.whiteSpace = 'pre'; // Preserve whitespace
-        tempSpan.style.font = getComputedStyle(myInput).font; // Match input font
-        tempSpan.textContent = textBeforeCursor;
-        document.body.appendChild(tempSpan);
+        const x = currentCol * fontSize;
+        const y = currentLine * lineHeight;
 
-        const textWidth = tempSpan.offsetWidth;
-        document.body.removeChild(tempSpan);
-
-        // Position the anchor
-        cursorAnchor.style.left = `${textWidth + myInput.offsetLeft + 5}px`; // Add input's left offset and padding
-  }
-
-  // Initial positioning
-  updateCursorAnchor();
-  </script>
+        cursoranchor.style.left = x + xOffset + "px"
+        cursoranchor.style.top = y + yOffset + "px"
+    });
+</script>
 
   <script src="script.js"></script>
 </html>
