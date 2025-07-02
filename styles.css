@@ -30,4 +30,5 @@ body, html {
     border: 0;
     font-size: 16px;
     line-height: 1.2;
+    outline: none;
 }
