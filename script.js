@@ -1,6 +1,7 @@
 const textarea = document.getElementById('myInput')
 const anchor = document.getElementById('cursorAnchor')
 var input = ''
+var menuOpen = false
 
 textarea.addEventListener('keydown', (event) => {
   var key = event.key
@@ -16,9 +17,15 @@ textarea.addEventListener('keydown', (event) => {
     case "ArrowDown":
     case "ArrowLeft":
     case "ArrowRight":
-      input = ""
-      console.log("full input: ", input)
-      break
+      
+      if (menuOpen = false) {
+        input = ""
+        console.log("full input: ", input)
+        break
+      } else {
+        break
+      }
+      
     default:
       if (key.length === 1) {
         combinedInput = input + key;
@@ -37,28 +44,65 @@ textarea.addEventListener('mousedown', (event) =>  {
 
 $( function() {
   var availableTags = [
-    "ActionScript",
-    "AppleScript",
-    "Asp",
-    "BASIC",
-    "C",
-    "C++",
-    "Clojure",
-    "COBOL",
-    "ColdFusion",
-    "Erlang",
-    "Fortran",
-    "Groovy",
-    "Haskell",
-    "Java",
-    "JavaScript",
-    "Lisp",
-    "Perl",
-    "PHP",
-    "Python",
-    "Ruby",
-    "Scala",
-    "Scheme"
+    "no further det from OCC, no det from other A/S",
+    "no further det from TAB, no det from OCC throughout, no det from other A/S",
+    "no nearby AAs",
+    "UAS last det dropped off @",
+    "UAS appeared within STW @",
+    "UAS crossed into STW @",
+    "UAS crossed into MTW @",
+    "not req",
+    "Same as above",
+    "OCC (BEDOK AS)",
+    "OCC (R1S AS)",
+    "OCC (SEL AS)",
+    "OCC (SCA AS)",
+    "OCC (MPA AS)",
+    "TAB (TAB STATIC AS)",
+    "SBAB (SBAB DD)",
+    "ADOC (ADOC MOBILE AS)",
+    "PLAB (PLAB PE(N))",
+    "PLAB (PLAB PE(S))",
+    "SPF (POLARIS)",
+    "on-site, patrolling",
+    "on-site, located operator, tallying UAS ID",
+    "confirm tallied UAS ID, taking down operator details",
+    "stood down",
+    "stood down with nil findings, nil sightings",
+    "stood down after taking down operator details",
+    "CAB [W] MDT",
+    "CAB [E] MDT",
+    "CAB [M] MDT",
+    "PLAB MDT",
+    "SBAB MDT",
+    "TAB MDT",
+    "CAG MDT (T1)",
+    "CAG MDT (T2)",
+    "AETOS (CT1)",
+    "AETOS (CT2)",
+    "AETOS (CT3)",
+    "AETOS (CT4)",
+    "AETOS (IW1)",
+    "AETOS (IW2)",
+    "AETOS (IW3)",
+    "AETOS (IW4)",
+    "AETOS (IW5)",
+    "AETOS (IW6)",
+    "AETOS",
+    "SPF",
+    "203 informed",
+    "CBCP informed",
+    "PBCP informed",
+    "SBCP informed",
+    "TBCP informed",
+    "AFCIC informed",
+    "AOC informed",
+    "OCC OC informed",
+    "3x Line engaged",
+    "POCC informed by OCC OC",
+    "MSCC informed by OCC OC",
+    "Sentosa Island Ranger informed by OCC OC",
+    "Sentosa Island Ranger"
 ];
   $( "#myInput" )
   .on( "keydown", function( event ) {
@@ -82,6 +126,12 @@ $( function() {
   focus: function() {
     // prevent value inserted on focus
     return false;
+  },
+  open: function() {
+    menuOpen = true;
+  },
+  close: function() {
+    menuOpen = false;
   },
   select: function( event, ui ) {
     var curPos = this.selectionStart
