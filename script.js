@@ -1,3 +1,5 @@
+const { text } = require("stream/consumers")
+
 const suggestions = [
                       "Here comes the suggestions", 
                       "I like pizza", 
@@ -74,22 +76,32 @@ $( function() {
   source: function( request, response ) {
     // delegate back to autocomplete, but extract the last term
     response( $.ui.autocomplete.filter(
-    availableTags, extractLast( request.term ) ) );
+    availableTags, input ));
   },
   focus: function() {
     // prevent value inserted on focus
     return false;
   },
   select: function( event, ui ) {
-    var terms = split( this.value );
-    // remove the current input
-    terms.pop();
-    // add the selected item
-    terms.push( ui.item.value );
-    // add placeholder to get the comma-and-space at the end
-    terms.push( "" );
-    this.value = terms.join( ", " );
-    return false;
+    var curPos = textarea.selectionStart
+    var pretext = textarea.slice(0, curPos)
+    var posttext = textarea.slice(curPos)
+    //var terms = split( this.value );
+
+    //remove current input
+    pretext = pretext.slice(0, curPos - input.length)
+
+    //add selected item and rejoin whole input together again
+    this.value = pretext + ui.item.value + posttext
+
+    // // remove the current input
+    // terms.pop();
+    // // add the selected item
+    // terms.push( ui.item.value );
+    // // add placeholder to get the comma-and-space at the end
+    // terms.push( "" );
+    // this.value = terms.join( ", " );
+    // return false;
     }
   });
 }); 
