@@ -1,12 +1,3 @@
-const { text } = require("stream/consumers")
-
-const suggestions = [
-                      "Here comes the suggestions", 
-                      "I like pizza", 
-                      "I'm a good programmer"
-                    ]
-
-
 const textarea = document.getElementById('myInput')
 const anchor = document.getElementById('cursorAnchor')
 var input = ''
