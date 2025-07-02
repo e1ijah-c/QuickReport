@@ -5,9 +5,8 @@ const suggestions = [
                     ]
 
 
-var textarea = document.getElementById('myInput')
-var anchor = document.getElementById('cursorAnchor')
-var autoinput = document.getElementById('autoFillInput')
+const textarea = document.getElementById('myInput')
+const anchor = document.getElementById('cursorAnchor')
 var input = ''
 
 textarea.addEventListener('keydown', (event) => {
@@ -16,8 +15,7 @@ textarea.addEventListener('keydown', (event) => {
   switch ( key ) {
     case "Backspace":
       input = input.slice(0, -1);
-      console.log("backspace pressed")
-      UpdateTextValue(input)
+      console.log("full input: ", input)
       break
     case " ":
     case "Enter":
@@ -26,13 +24,13 @@ textarea.addEventListener('keydown', (event) => {
     case "ArrowLeft":
     case "ArrowRight":
       input = ""
-      UpdateTextValue(input)
+      console.log("full input: ", input)
       break
     default:
       if (key.length === 1) {
         combinedInput = input + key;
         input = combinedInput;
-        UpdateTextValue(input)
+        console.log("full input: ", input)
       }
   }
 })
@@ -119,7 +117,7 @@ function extractLast( term ) {
 }
 
 function UpdateTextValue(newInput) {
-  autoinput.value = newInput;
+  textarea.value = newInput;
   console.log("full input: ", input)
   console.log("anchor text box value: ", autoinput.value)
 }
