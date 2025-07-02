@@ -74,9 +74,9 @@ $( function() {
     return false;
   },
   select: function( event, ui ) {
-    var curPos = textarea.selectionStart
-    var pretext = textarea.slice(0, curPos)
-    var posttext = textarea.slice(curPos)
+    var curPos = this.value.selectionStart
+    var pretext = this.value.slice(0, curPos)
+    var posttext = this.value.slice(curPos)
     //var terms = split( this.value );
 
     //remove current input
