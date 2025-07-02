@@ -34,27 +34,13 @@ textarea.addEventListener('keydown', (event) => {
       }
   }
 })
-  
-  // test to check only if a character key was pressed 
-//   if (key.length > 1) {
-//     if (key === 'Backspace') {
-//       input = input.slice(0, -1);
-//       console.log("backspace pressed")
-//       UpdateTextValue(input)
-//     }
-//     return
-//   }
 
-//   if (key === ' ') {
-//     //clear input
-//     input = ''; 
-//     UpdateTextValue(input)
-//   } else {
-//     combinedInput = input + key;
-//     input = combinedInput;
-//     UpdateTextValue(input)
-//   }
-// })
+textarea.addEventListener('mousedown', (event) =>  {
+  if (event.button === 0) {
+    input = ""
+    console.log("full input: ", input)
+  }
+})
 
 $( function() {
   var availableTags = [
