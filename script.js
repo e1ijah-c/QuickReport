@@ -60,7 +60,14 @@ $( function() {
     "Scala",
     "Scheme"
 ];
-  $( "#myInput" ).autocomplete({
+  $( "#myInput" )
+  .on( "keydown", function( event ) {
+        if ( event.keyCode === $.ui.keyCode.TAB &&
+            $( textarea ).autocomplete( "instance" ).menu.active ) {
+          event.preventDefault();
+        }
+  })
+  .autocomplete({
   autoFocus: true, 
   position: { of: "#cursorAnchor" }, 
   //source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ],
@@ -69,6 +76,8 @@ $( function() {
     if (input != "") {
       response( $.ui.autocomplete.filter(
       availableTags, input ));
+    } else {
+      $( ".selector" ).autocomplete( "close" );
     }
   },
   focus: function() {
@@ -76,26 +85,12 @@ $( function() {
     return false;
   },
   select: function( event, ui ) {
-    var curPos = this.value.selectionStart
-    var pretext = this.value.slice(0, curPos)
-    var posttext = this.value.slice(curPos)
-    //var terms = split( this.value );
-
-    //remove current input
-    pretext = pretext.slice(0, curPos - input.length)
-
+    var curPos = textarea.selectionStart
+    var pretext = textarea.value.slice(0, curPos - input.length)
+    var posttext = textarea.value.slice(curPos)
     //add selected item and rejoin whole input together again
-    this.value = pretext + ui.item.value + posttext
+    textarea.value = pretext + ui.item.value + posttext
     return false;
-
-    // // remove the current input
-    // terms.pop();
-    // // add the selected item
-    // terms.push( ui.item.value );
-    // // add placeholder to get the comma-and-space at the end
-    // terms.push( "" );
-    // this.value = terms.join( ", " );
-    // return false;
     }
   });
 }); 
