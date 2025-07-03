@@ -115,13 +115,18 @@ $( function() {
   autoFocus: true, 
   position: { of: "#cursorAnchor" }, 
   source: function( request, response ) {
-    // delegate back to autocomplete, but extract the last term
-    if (input != "") {
-      response( $.ui.autocomplete.filter(
-      availableTags, input ));
+  // only starts showing suggestions when 2 or more characters are typed
+    if (input.length >= 2){
+      // matcher function to suggest matches only with the word contained
+      var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( input ), "i" );
+          response( $.grep( availableTags, function( item ){
+              return matcher.test( item );
+      }) );
     } else {
-      $( ".selector" ).autocomplete( "close" );
+      $( "#myInput" ).autocomplete( "close" );
     }
+    
+    
   },
   focus: function() {
     // prevent value inserted on focus
