@@ -9,18 +9,23 @@ textarea.addEventListener('keydown', (event) => {
   switch ( key ) {
     case "Backspace":
       input = input.slice(0, -1);
-      console.log("full input: ", input)
+
+      if (event.metaKey) {
+        input = ""
+      }
       break
     case " ":
+      input = ""
+      break
     case "Enter":
     case "ArrowUp":
     case "ArrowDown":
     case "ArrowLeft":
     case "ArrowRight":
       
-      if (menuOpen = false) {
+      if (menuOpen === false) {
         input = ""
-        console.log("full input: ", input)
+        
         break
       } else {
         break
@@ -30,9 +35,9 @@ textarea.addEventListener('keydown', (event) => {
       if (key.length === 1) {
         combinedInput = input + key;
         input = combinedInput;
-        console.log("full input: ", input)
       }
   }
+  console.log("full input: ", input)
 })
 
 textarea.addEventListener('mousedown', (event) =>  {
@@ -103,7 +108,7 @@ $( function() {
     "MSCC informed by OCC OC",
     "Sentosa Island Ranger informed by OCC OC",
     "Sentosa Island Ranger"
-];
+  ];
   $( "#myInput" )
   .on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
