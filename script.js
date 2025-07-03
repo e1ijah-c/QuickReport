@@ -153,6 +153,8 @@ $( function() {
     this.value = pretext + ui.item.value + " " + posttext
     input = ""
     console.log("full input: ", input)
+    this.selectionStart = pretext.length + ui.item.value.length + 1
+    this.selectionEnd = pretext.length + ui.item.value.length + 1
     return false;
     }
   });
