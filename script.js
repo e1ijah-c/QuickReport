@@ -134,9 +134,11 @@ $( function() {
   },
   open: function() {
     menuOpen = true;
+    console.log("menu is open")
   },
   close: function() {
     menuOpen = false;
+    console.log("menu is closed")
   },
   select: function( event, ui ) {
     var curPos = this.selectionStart
