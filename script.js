@@ -10,7 +10,7 @@ textarea.addEventListener('keydown', (event) => {
     case "Backspace":
       input = input.slice(0, -1);
 
-      if (event.metaKey) {
+      if (event.metaKey || event.altKey) {
         input = ""
       }
       break
@@ -153,6 +153,7 @@ $( function() {
     this.value = pretext + ui.item.value + " " + posttext
     input = ""
     console.log("full input: ", input)
+    // Set caret position to be one space ahead of the autofilled word
     this.selectionStart = pretext.length + ui.item.value.length + 1
     this.selectionEnd = pretext.length + ui.item.value.length + 1
     return false;
