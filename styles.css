@@ -24,7 +24,7 @@ body, html {
 
 #myInput {
     width: 100%;
-    height: 100vh; /* vh is a unit relative to the viewport height */
+    height: 50000px; /* vh is a unit relative to the viewport height */
     resize: none; /* prevent resizing by the user */
     box-sizing: border-box; /* include padding and border in the element's total width and height */
     border: 0;
