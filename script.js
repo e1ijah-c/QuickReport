@@ -12,7 +12,7 @@ function specialReturn() {
   var lineAbove = lines[lines.length - 2]
   var firstChar = lineAbove[0]
 
-  if (firstChar === '>') {
+  if (firstChar === '>' && menuOpen === false) {
     //add selected item and rejoin whole input together again
     textarea.value = pretext + ">  " + posttext
 
