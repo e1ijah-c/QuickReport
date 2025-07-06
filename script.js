@@ -1,5 +1,4 @@
 const textarea = document.getElementById('myInput')
-const anchor = document.getElementById('cursorAnchor')
 var input = ''
 var menuOpen = false
 
@@ -123,6 +122,7 @@ $( function() {
     "activated",
     "on-site, patrolling",
     "on-site, located operator, tallying UAS ID",
+    "located operator, tallying UAS ID",
     "on-site, linking up with",
     "confirm tallied UAS ID, taking down operator details",
     "confirm UAS ID not tallied, will continue to patrol",
