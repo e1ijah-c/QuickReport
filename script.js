@@ -85,6 +85,8 @@ $( function() {
     "RC informed by TBCP",
     "TBCP informed RC",
     "RC informed by PBCP",
+    "ADOC informed RC",
+    "RC informed by ADOC",
     "PBCP informed RC",
     "RC informed by SBCP",
     "SBCP informed RC",
@@ -152,7 +154,6 @@ $( function() {
     } else {
       $( "#myInput" ).autocomplete( "close" );
     }
-    
     
   },
   focus: function() {
