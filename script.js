@@ -87,6 +87,7 @@ $( function() {
     "Same as above",
     "on-site, patrolling",
     "on-site, located operator, tallying UAS ID",
+    "on-site, linking up with",
     "confirm tallied UAS ID, taking down operator details",
     "confirm UAS ID not tallied, will continue to patrol",
     "stood down",
