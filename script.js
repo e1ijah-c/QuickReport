@@ -3,6 +3,33 @@ const anchor = document.getElementById('cursorAnchor')
 var input = ''
 var menuOpen = false
 
+function specialReturn() {
+  var curPos = textarea.selectionStart
+  var pretext = textarea.value.substring(0, curPos)
+  var posttext = textarea.value.substring(curPos)
+
+  var lines = pretext.split('\n')
+  var lineAbove = lines[lines.length - 2]
+  var firstChar = lineAbove[0]
+
+  if (firstChar === '>') {
+    //add selected item and rejoin whole input together again
+    textarea.value = pretext + ">  " + posttext
+
+    // Set caret position to be one space ahead of the autofilled word
+    textarea.selectionStart = pretext.length + 2
+    textarea.selectionEnd = pretext.length + 2
+  }
+}
+
+textarea.addEventListener('keyup', (event) => { 
+  var key = event.key
+
+  if (key === "Enter") {
+    specialReturn()
+  }
+})
+
 textarea.addEventListener('keydown', (event) => {
   var key = event.key
 
@@ -55,17 +82,17 @@ textarea.addEventListener('mousedown', (event) =>  {
 
 $( function() {
   var availableTags = [
-    "OCC (BEDOK AS)",
-    "OCC (R1S AS)",
-    "OCC (SEL AS)",
-    "OCC (SCA AS)",
-    "OCC (MPA AS)",
-    "TAB (TAB STATIC AS)",
-    "SBAB (SBAB DD)",
-    "ADOC (ADOC MOBILE AS)",
-    "PLAB (PLAB PE(N))",
-    "PLAB (PLAB PE(S))",
-    "SPF (POLARIS)",
+    "OCC (BEDOK AS),",
+    "OCC (R1S AS),",
+    "OCC (SEL AS),",
+    "OCC (SCA AS),",
+    "OCC (MPA AS),",
+    "TAB (TAB STATIC AS),",
+    "SBAB (SBAB DD),",
+    "ADOC (ADOC MOBILE AS),",
+    "PLAB (PLAB PE(N)),",
+    "PLAB (PLAB PE(S)),",
+    "SPF (POLARIS),",
     "no further det from OCC, no det from other A/S",
     "no further det from TAB, no det from OCC throughout, no det from other A/S",
     "no further det from ADOC, no det from OCC throughout, no det from other A/S",
@@ -93,6 +120,7 @@ $( function() {
     "OCC OC informed by POCC",
     "POCC informed OCC OC",
     "Same as above",
+    "activated",
     "on-site, patrolling",
     "on-site, located operator, tallying UAS ID",
     "on-site, linking up with",
@@ -109,15 +137,15 @@ $( function() {
     "TAB MDT",
     "CAG MDT (T1)",
     "CAG MDT (T2)",
-    "AETOS activated",
-    "AETOS (IW1) activated",
-    "AETOS (IW2) activated",
-    "AETOS (IW3) activated",
-    "AETOS (IW4) activated",
-    "AETOS (CT1) activated",
-    "AETOS (CT2) activated",
-    "AETOS (CT3) activated",
-    "AETOS (CT4) activated",
+    "AETOS",
+    "AETOS (IW1)",
+    "AETOS (IW2)",
+    "AETOS (IW3)",
+    "AETOS (IW4)",
+    "AETOS (CT1)",
+    "AETOS (CT2)",
+    "AETOS (CT3)",
+    "AETOS (CT4)",
     "203 informed",
     "CBCP informed",
     "PBCP informed",
