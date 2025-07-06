@@ -15,8 +15,14 @@ textarea.addEventListener('keydown', (event) => {
       }
       break
     case " ":
-      input = ""
-      break
+      if (menuOpen === false) {
+        input = ""
+        break
+      } else {
+        combinedInput = input + key;
+        input = combinedInput;
+        break
+      }
     case "Enter":
     case "ArrowUp":
     case "ArrowDown":
