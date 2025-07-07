@@ -13,10 +13,12 @@ function getLastDetTime() {
   for (let i = 0; i < lines.length; i++) {
     // find where part 1 of the report is
     if (lines[i][0] === '1') {
+      console.log("found part 1 of report: " + i)
        //iterate until the very latest detection and save the last det line
       for (let a = i + 1; a < lines.length; a++) {
         if (lines[i][0] !== '>') {
           lastDetLine = lines[a-1]
+          console.log(lastDetLine)
         }
       }
       lastDetLineData = lastDetLine.split(", ")
