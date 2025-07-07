@@ -19,7 +19,7 @@ function getLastDetTime() {
        //iterate until the very latest detection and save the last det line
       for (let a = part1Index; a < lines.length; a++) {
         lineFirstChar = lines[a+1][0]
-        console.log{"first char in line: " + lineFirstChar}
+        console.log("first char in line: " + lineFirstChar)
         if (lineFirstChar !== '>') {
           lastDetLine = lines[a]
           console.log(lastDetLine)
