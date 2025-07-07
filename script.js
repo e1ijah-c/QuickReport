@@ -19,9 +19,11 @@ function getLastDetTime() {
         if (lines[i][0] !== '>') {
           lastDetLine = lines[a-1]
           console.log(lastDetLine)
+          break
         }
       }
       lastDetLineData = lastDetLine.split(", ")
+      console.log(lastDetLineData)
       durationString = lastDetLine[lastDetLineData.length - 2]
       //remove all white spaces
       durationString = durationString.replace(/\s+/g, '')
