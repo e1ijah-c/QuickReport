@@ -7,7 +7,6 @@ function getLastDetTime() {
   var pretext = textarea.value.substring(0, curPos)
   //var posttext = textarea.value.substring(curPos)
   var lines = pretext.split('\n')
-  var part1Index 
   var lastDetLine
 
   for (let i = 0; i < lines.length; i++) {
@@ -16,8 +15,8 @@ function getLastDetTime() {
       console.log("found part 1 of report: " + i)
        //iterate until the very latest detection and save the last det line
       for (let a = i + 1; a < lines.length; a++) {
-        if (lines[i][0] !== '>') {
-          lastDetLine = lines[a-1]
+        if (lines[a][0] !== '>') {
+          lastDetLine = lines[i]
           console.log(lastDetLine)
           break
         }
