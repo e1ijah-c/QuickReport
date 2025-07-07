@@ -28,9 +28,9 @@ function getLastDetTime() {
       }
       lastDetLineData = lastDetLine.split(",")
       console.log(lastDetLineData)
-      durationString = lastDetLine[lastDetLineData.length - 2]
+      durationString = lastDetLineData[lastDetLineData.length - 2]
       //remove all white spaces
-      //durationString = durationString.replace(/\s+/g, '')
+      durationString = durationString.replace(/\s+/g, '')
 
       console.log(durationString)
 
