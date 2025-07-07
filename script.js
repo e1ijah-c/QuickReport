@@ -2,6 +2,34 @@ const textarea = document.getElementById('myInput')
 var input = ''
 var menuOpen = false
 
+function getLastDetTime() {
+  var curPos = textarea.selectionStart
+  var pretext = textarea.value.substring(0, curPos)
+  //var posttext = textarea.value.substring(curPos)
+  var lines = pretext.split('\n')
+  var part1Index 
+  var lastDetLine
+
+  for (let i = 0; i < lines.length; i++) {
+    // find where part 1 of the report is
+    if (lines[i][0] === '1') {
+       //iterate until the very latest detection and save the last det line
+      for (let a = i + 1; a < lines.length; a++) {
+        if (lines[i][0] !== '>') {
+          lastDetLine = lines[a-1]
+        }
+      }
+      lastDetLineData = lastDetLine.split(", ")
+      durationString = lastDetLine[lastDetLineData.length - 2]
+      //remove all white spaces
+      durationString = durationString.replace(/\s+/g, '')
+
+      console.log(durationString)
+
+    }
+  } 
+}
+
 function specialReturn() {
   var curPos = textarea.selectionStart
   var pretext = textarea.value.substring(0, curPos)
@@ -26,6 +54,7 @@ textarea.addEventListener('keyup', (event) => {
 
   if (key === "Enter") {
     specialReturn()
+    getLastDetTime()
   }
 })
 
