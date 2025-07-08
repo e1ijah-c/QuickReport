@@ -42,24 +42,30 @@ function getLastDetTime() {
       console.log('duration of det: ' + durationString)
 
       durationChars = durationString.split("")
-      var minutesIndex = durationString.indexOf("m") 
-      var secondsIndex 
+      var minutesIndex = durationString.indexOf("m"), secondsIndex 
+      var mins, secs
 
       if (minutesIndex !== -1) {
+        mins = parseInt(durationString.substring(0, minutesIndex))
         for (let n = minutesIndex; n < durationChars.length; n++) {
           if (isNumeric(durationChars[n]) === true) {
             let str = durationString.substring(n)
-            secondsIndex = str.indexOf("s") + durationString.substring(0, n).length
+            secondsIndex = str.indexOf("s") 
+            secs = parseInt(str.substring(0, secondsIndex))
             break
+          }
+          if (secs === null) {
+            secs = 0
           }
         }
       } else {
         secondsIndex = durationString.indexOf("s") 
+        mins = 0
+        secs = parseInt(durationString.substring(0, secondsIndex))
       }
       
-      console.log("min index: " + minutesIndex + " seconds index: " + secondsIndex)
-
-
+      console.log("mins: " + mins + " seconds: " + secs)
+    
       
     }
   } 
