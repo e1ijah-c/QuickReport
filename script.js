@@ -66,18 +66,18 @@ function getLastDetTime() {
       
       console.log("mins: " + mins + " seconds: " + secs)
 
-      detHours = timeOfDetString.slice(0, 2)
-      detMinutes = timeOfDetString.slice(2)
+      detHours = Number(timeOfDetString.slice(0, 2))
+      detMinutes = Number(timeOfDetString.slice(2))
 
       if (secs > 30) {
-        mins + 1
+        mins += 1
       }
 
-      detMinutes = parseInt(detMinutes) + mins
+      detMinutes = Number(detMinutes) + mins
       
       if (detMinutes >= 60) {
-        detHours = parseInt(detHours) + 1
-        detMinutes = detMinutes - 60
+        detHours += 1
+        detMinutes -= 60
       }
 
       if (detMinutes < 10) {
