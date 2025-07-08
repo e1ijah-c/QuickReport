@@ -2,7 +2,7 @@ const textarea = document.getElementById('myInput')
 var input = ''
 var menuOpen = false
 
-function getLastDetTime() {
+function LastDetTime() {
   var curPos = textarea.selectionStart
   var pretext = textarea.value.substring(0, curPos)
   //var posttext = textarea.value.substring(curPos)
@@ -79,7 +79,6 @@ function getLastDetTime() {
         detHours += 1
         detMinutes -= 60
       }
-
       if (detMinutes < 10) {
         detMinutes = `0${detMinutes}`
       }
@@ -89,6 +88,8 @@ function getLastDetTime() {
 
       detDroppedOffTime = `${detHours}${detMinutes}`
       console.log(detDroppedOffTime)
+
+      return detDroppedOffTime
 
     }
   } 
@@ -122,7 +123,6 @@ textarea.addEventListener('keyup', (event) => {
 
   if (key === "Enter") {
     specialReturn()
-    getLastDetTime()
   }
 })
 
@@ -297,13 +297,21 @@ $( function() {
     var curPos = this.selectionStart
     var pretext = this.value.substring(0, curPos - input.length)
     var posttext = this.value.substring(curPos)
+    
+    
+    if (ui.item.value === "UAS last det dropped off @") {
+      //add selected item and rejoin whole input together again
+      ui.item.value = ui.item.value + " " + LastDetTime() + "H"
+    } 
     //add selected item and rejoin whole input together again
     this.value = pretext + ui.item.value + " " + posttext
     input = ""
     console.log("full input: ", input)
+    
     // Set caret position to be one space ahead of the autofilled word
     this.selectionStart = pretext.length + ui.item.value.length + 1
     this.selectionEnd = pretext.length + ui.item.value.length + 1
+
     return false;
     }
   });
