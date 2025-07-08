@@ -28,11 +28,32 @@ function getLastDetTime() {
       }
       lastDetLineData = lastDetLine.split(",")
       console.log(lastDetLineData)
+      timeOfDetString = lastDetLineData[0]
       durationString = lastDetLineData[lastDetLineData.length - 2]
-      //remove all white spaces
-      durationString = durationString.replace(/\s+/g, '')
 
-      console.log(durationString)
+      // clean and format both strings
+      timeOfDetString = timeOfDetString.replace(/\s+/g, '')
+      timeOfDetString = timeOfDetString.replace('>', '')
+
+      durationString = durationString.replace(/\s+/g, '')
+      durationString = durationString.toLowerCase()
+
+      console.log('time of det: ' + timeOfDetString)
+      console.log('duration of det: ' + durationString)
+
+
+      const regex = /(\d+)\s*(mins?|minutes?|min)(?:\s*(\d+)\s*(secs?|seconds?|sec))?/;
+      const match = regex.exec(durationString);
+
+      if (match) {
+          const minutes = parseInt(match[1], 10) || 0;
+          const seconds = parseInt(match[3], 10) || 0;
+
+          console.log(`Minutes: ${minutes}`);
+          console.log(`Seconds: ${seconds}`);
+      } else {
+          console.log("Invalid time format");
+      }
 
     }
   } 
