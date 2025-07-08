@@ -41,22 +41,20 @@ function getLastDetTime() {
       console.log('time of det: ' + timeOfDetString)
       console.log('duration of det: ' + durationString)
 
+      durationChars = durationString.split("")
+      var minutesIndex = durationString.indexOf("m") 
+      var secondsIndex = durationString.indexOf("s") 
+      
+      console.log("min index: " + minutesIndex + "seconds index: " + secondsIndex)
 
-      const regex = /(\d+)\s*(mins?|minutes?|min)(?:\s*(\d+)\s*(secs?|seconds?|sec))?/;
-      const match = regex.exec(durationString);
-
-      if (match) {
-          const minutes = parseInt(match[1], 10) || 0;
-          const seconds = match[3] ? parseInt(match[3], 10) : 0;
-
-          console.log(`Minutes: ${minutes}`);
-          console.log(`Seconds: ${seconds}`);
-      } else {
-          console.log("Invalid time format");
-      }
-
+      
+      
     }
   } 
+}
+
+function isNumeric(str) {
+  return !isNaN(parseFloat(str)) && isFinite(str);
 }
 
 function specialReturn() {
