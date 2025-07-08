@@ -43,11 +43,23 @@ function getLastDetTime() {
 
       durationChars = durationString.split("")
       var minutesIndex = durationString.indexOf("m") 
-      var secondsIndex = durationString.indexOf("s") 
-      
-      console.log("min index: " + minutesIndex + "seconds index: " + secondsIndex)
+      var secondsIndex 
 
+      if (minutesIndex !== -1) {
+        for (let n = minutesIndex; n < durationChars.length; n++) {
+          if (isNumeric(durationChars[n]) === true) {
+            let str = durationString.substring(n)
+            secondsIndex = str.indexOf("s")
+            break
+          }
+        }
+      } else {
+        secondsIndex = durationString.indexOf("s")
+      }
       
+      console.log("min index: " + minutesIndex + " seconds index: " + secondsIndex)
+
+
       
     }
   } 
