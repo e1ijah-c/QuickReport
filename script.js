@@ -11,88 +11,93 @@ function LastDetTime() {
   var part1Index
   var lastDetLine
 
-  for (let i = 0; i < lines.length; i++) {
-    // find where part 1 of the report is
-    if (lines[i][0] === '1') {
-      part1Index = i
-      console.log("found part 1 of report: " + part1Index)
-       //iterate until the very latest detection and save the last det line
-      for (let a = part1Index; a < lines.length; a++) {
-        lineFirstChar = lines[a+1][0]
-        console.log("first char in line: " + lineFirstChar)
-        if (lineFirstChar !== '>') {
-          lastDetLine = lines[a]
-          console.log(lastDetLine)
-          break
-        }
-      }
-      lastDetLineData = lastDetLine.split(",")
-      console.log(lastDetLineData)
-      timeOfDetString = lastDetLineData[0]
-      durationString = lastDetLineData[lastDetLineData.length - 2]
-
-      // clean and format both strings
-      timeOfDetString = timeOfDetString.replace(/\s+/g, '')
-      timeOfDetString = timeOfDetString.replace('>', '')
-
-      durationString = durationString.replace(/\s+/g, '')
-      durationString = durationString.toLowerCase()
-
-      console.log('time of det: ' + timeOfDetString)
-      console.log('duration of det: ' + durationString)
-
-      durationChars = durationString.split("")
-      var minutesIndex = durationString.indexOf("m"), secondsIndex 
-      var mins, secs
-
-      if (minutesIndex !== -1) {
-        mins = parseInt(durationString.substring(0, minutesIndex))
-        for (let n = minutesIndex; n < durationChars.length; n++) {
-          if (isNumeric(durationChars[n]) === true) {
-            let str = durationString.substring(n)
-            secondsIndex = str.indexOf("s") 
-            secs = parseInt(str.substring(0, secondsIndex))
+  try {
+    for (let i = 0; i < lines.length; i++) {
+      // find where part 1 of the report is
+      if (lines[i][0] === '1') {
+        part1Index = i
+        console.log("found part 1 of report: " + part1Index)
+        //iterate until the very latest detection and save the last det line
+        for (let a = part1Index; a < lines.length; a++) {
+          lineFirstChar = lines[a+1][0]
+          console.log("first char in line: " + lineFirstChar)
+          if (lineFirstChar !== '>') {
+            lastDetLine = lines[a]
+            console.log(lastDetLine)
             break
           }
-          if (secs == null) {
-            secs = 0
-          }
         }
-      } else {
-        secondsIndex = durationString.indexOf("s") 
-        mins = 0
-        secs = parseInt(durationString.substring(0, secondsIndex))
+        lastDetLineData = lastDetLine.split(",")
+        console.log(lastDetLineData)
+        timeOfDetString = lastDetLineData[0]
+        durationString = lastDetLineData[lastDetLineData.length - 2]
+
+        // clean and format both strings
+        timeOfDetString = timeOfDetString.replace(/\s+/g, '')
+        timeOfDetString = timeOfDetString.replace('>', '')
+
+        durationString = durationString.replace(/\s+/g, '')
+        durationString = durationString.toLowerCase()
+
+        console.log('time of det: ' + timeOfDetString)
+        console.log('duration of det: ' + durationString)
+
+        durationChars = durationString.split("")
+        var minutesIndex = durationString.indexOf("m"), secondsIndex 
+        var mins, secs
+
+        if (minutesIndex !== -1) {
+          mins = parseInt(durationString.substring(0, minutesIndex))
+          for (let n = minutesIndex; n < durationChars.length; n++) {
+            if (isNumeric(durationChars[n]) === true) {
+              let str = durationString.substring(n)
+              secondsIndex = str.indexOf("s") 
+              secs = parseInt(str.substring(0, secondsIndex))
+              break
+            }
+            if (secs == null) {
+              secs = 0
+            }
+          }
+        } else {
+          secondsIndex = durationString.indexOf("s") 
+          mins = 0
+          secs = parseInt(durationString.substring(0, secondsIndex))
+        }
+        
+        console.log("mins: " + mins + " seconds: " + secs)
+
+        detHours = Number(timeOfDetString.slice(0, 2))
+        detMinutes = Number(timeOfDetString.slice(2))
+
+        if (secs > 30) {
+          mins += 1
+        }
+
+        detMinutes = Number(detMinutes) + mins
+        
+        if (detMinutes >= 60) {
+          detHours += 1
+          detMinutes -= 60
+        }
+        if (detMinutes < 10) {
+          detMinutes = `0${detMinutes}`
+        }
+        if (detHours < 10) {
+          detHours = `0${detHours}`
+        }
+
+        detDroppedOffTime = `${detHours}${detMinutes}` + "H"
+        console.log(detDroppedOffTime)
+
+        return detDroppedOffTime
+
       }
-      
-      console.log("mins: " + mins + " seconds: " + secs)
-
-      detHours = Number(timeOfDetString.slice(0, 2))
-      detMinutes = Number(timeOfDetString.slice(2))
-
-      if (secs > 30) {
-        mins += 1
-      }
-
-      detMinutes = Number(detMinutes) + mins
-      
-      if (detMinutes >= 60) {
-        detHours += 1
-        detMinutes -= 60
-      }
-      if (detMinutes < 10) {
-        detMinutes = `0${detMinutes}`
-      }
-      if (detHours < 10) {
-        detHours = `0${detHours}`
-      }
-
-      detDroppedOffTime = `${detHours}${detMinutes}`
-      console.log(detDroppedOffTime)
-
-      return detDroppedOffTime
-
-    }
-  } 
+    } 
+  }
+  catch (error) {
+    return "";
+  }
 }
 
 function isNumeric(str) {
@@ -301,7 +306,7 @@ $( function() {
     
     if (ui.item.value === "UAS last det dropped off @") {
       //add selected item and rejoin whole input together again
-      ui.item.value = ui.item.value + " " + LastDetTime() + "H"
+      ui.item.value = ui.item.value + " " + LastDetTime()
     } 
     //add selected item and rejoin whole input together again
     this.value = pretext + ui.item.value + " " + posttext
