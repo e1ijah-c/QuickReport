@@ -47,7 +47,7 @@ function getLastDetTime() {
 
       if (match) {
           const minutes = parseInt(match[1], 10) || 0;
-          const seconds = parseInt(match[3], 10) || 0;
+          const seconds = match[3] ? parseInt(match[3], 10) : 0;
 
           console.log(`Minutes: ${minutes}`);
           console.log(`Seconds: ${seconds}`);
