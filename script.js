@@ -54,7 +54,7 @@ function getLastDetTime() {
             secs = parseInt(str.substring(0, secondsIndex))
             break
           }
-          if (secs === null) {
+          if (secs == null) {
             secs = 0
           }
         }
@@ -65,8 +65,31 @@ function getLastDetTime() {
       }
       
       console.log("mins: " + mins + " seconds: " + secs)
-    
+
+      detHours = timeOfDetString.slice(0, 2)
+      detMinutes = timeOfDetString.slice(2)
+
+      if (secs > 30) {
+        mins + 1
+      }
+
+      detMinutes = parseInt(detMinutes) + mins
       
+      if (detMinutes >= 60) {
+        detHours = parseInt(detHours) + 1
+        detMinutes = detMinutes - 60
+      }
+
+      if (detMinutes < 10) {
+        detMinutes = `0${detMinutes}`
+      }
+      if (detHours < 10) {
+        detHours = `0${detHours}`
+      }
+
+      detDroppedOffTime = `${detHours}${detMinutes}`
+      console.log(detDroppedOffTime)
+
     }
   } 
 }
