@@ -13,10 +13,10 @@
   <body>
 
   <textarea id="myInput">
-BAZ 1A - Green
+    BAZ 1A - Green
 
 1. Reported by (Source) / Location / Telemetry (if any) / Registration
-> 
+> tbc  
 
 2. Ground Enforcement: 
 > 
@@ -28,14 +28,14 @@ BAZ 1A - Green
 > 
 
 5. Disruptor:
->
+> 
 
 6. Past Detection/s:
 > 
 
 7. Others:
 > Indicative Pilot Location: 
->
+> 
         
 
 
@@ -91,6 +91,8 @@ BAZ 3A - Green
 > Indicative Pilot Location: 
 >
 
+
+
   </textarea> 
     <div id="cursorAnchor"></div>
     
@@ -104,6 +106,19 @@ BAZ 3A - Green
         curAnc.style.top = caret.top + yOffset + "px"
         curAnc.style.left = caret.left + xOffset + "px"
       })
+    </script>
+
+    <script>
+        // Retrieve user input from localStorage on page load
+        const storedValue = localStorage.getItem('myInput');
+        if (storedValue) {
+            document.getElementById('myInput').value = JSON.parse(storedValue);
+        }
+
+        // Save user input to localStorage on input change
+        document.getElementById('myInput').addEventListener('input', function() {
+            localStorage.setItem('myInput', JSON.stringify(this.value));
+        });
     </script>
 
   <script src="script.js"></script>

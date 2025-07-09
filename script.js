@@ -2,6 +2,7 @@ const textarea = document.getElementById('myInput')
 var input = ''
 var menuOpen = false
 
+
 function LastDetTime() {
   var curPos = textarea.selectionStart
   var pretext = textarea.value.substring(0, curPos)
