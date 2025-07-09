@@ -124,6 +124,8 @@ function specialReturn() {
   }
 }
 
+
+
 textarea.addEventListener('keyup', (event) => { 
   var key = event.key
 

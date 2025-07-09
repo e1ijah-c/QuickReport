@@ -13,18 +13,19 @@
   <body>
 
   <textarea id="myInput">
+
 BAZ 1A - Green
 
 1. Reported by (Source) / Location / Telemetry (if any) / Registration
 > 
 
-2. Ground Enforcement: 
+2. Ground Enforcement:
 > 
 
 3. Info Exchange:
 > 
 
-4. L&R Restrictions: 
+4. L&R Restrictions:
 > 
 
 5. Disruptor:
@@ -34,7 +35,7 @@ BAZ 1A - Green
 > 
 
 7. Others:
-> Indicative Pilot Location: 
+> Indicative Pilot Location:
 > 
 
 
@@ -44,24 +45,24 @@ BAZ 2A - Green
 1. Reported by (Source) / Location / Telemetry (if any) / Registration
 > 
 
-2. Ground Enforcement: 
+2. Ground Enforcement:
 > 
 
 3. Info Exchange:
 > 
 
-4. L&R Restrictions: 
+4. L&R Restrictions:
 > 
 
 5. Disruptor:
->
+> 
 
 6. Past Detection/s:
 > 
 
 7. Others:
-> Indicative Pilot Location: 
->
+> Indicative Pilot Location:
+> 
 
 
 
@@ -70,27 +71,26 @@ BAZ 3A - Green
 1. Reported by (Source) / Location / Telemetry (if any) / Registration
 > 
 
-2. Ground Enforcement: 
+2. Ground Enforcement:
 > 
 
 3. Info Exchange:
 > 
 
-4. L&R Restrictions: 
+4. L&R Restrictions:
 > 
 
 5. Disruptor:
->
+> 
 
 6. Past Detection/s:
 > 
 
 7. Others:
-> Indicative Pilot Location: 
->
-
+> Indicative Pilot Location:
+> 
   </textarea> 
-    <div id="cursorAnchor"></div>
+  <div id="cursorAnchor"></div>
     
     <script>
       document.querySelector('textarea').addEventListener('input', function () {
@@ -105,17 +105,19 @@ BAZ 3A - Green
     </script>
 
     <script>
-        // Retrieve user input from localStorage on page load
-        const storedValue = localStorage.getItem('myInput');
-        if (storedValue) {
-            document.getElementById('myInput').value = JSON.parse(storedValue);
-        }
+      // Retrieve user input from localStorage on page load
+      const storedValue = localStorage.getItem('myInput');
+      if (storedValue) {
+          document.getElementById('myInput').value = JSON.parse(storedValue);
+      }
 
-        // Save user input to localStorage on input change
-        document.getElementById('myInput').addEventListener('input', function() {
-            localStorage.setItem('myInput', JSON.stringify(this.value));
-        });
+      // Save user input to localStorage on input change
+      document.getElementById('myInput').addEventListener('input', function() {
+          localStorage.setItem('myInput', JSON.stringify(this.value));
+      });
     </script>
+
+
 
   <script src="script.js"></script>
 </html>
