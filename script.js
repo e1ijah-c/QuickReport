@@ -13,7 +13,7 @@ function LastDetTime() {
   var lastDetLine
 
   try {
-    for (let i = 0; i < lines.length; i++) {
+    for (let i = lines.length - 1; i >= 0; i--) {
       // find where part 1 of the report is
       if (lines[i][0] === '1') {
         part1Index = i
