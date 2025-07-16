@@ -203,8 +203,6 @@ function specialReturn() {
     return
   }
 
-
-
   if (checkLineEmpty(lines[lines.length - 2])) {
     pretext = textarea.value.substring(0, curPos - lines[lines.length -2].length - 1)
 
@@ -219,9 +217,7 @@ function specialReturn() {
     // Set caret position to be one space ahead of the autofilled word
     textarea.selectionStart = pretext.length + 2
     textarea.selectionEnd = pretext.length + 2
-  }
-
-  
+  }  
 }
 
 textarea.addEventListener('keyup', (event) => { 
