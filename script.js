@@ -1,6 +1,52 @@
 const textarea = document.getElementById('myInput')
 var input = ''
 var menuOpen = false
+const part1Options = ["OCC (BEDOK AS),", "OCC (R1S AS),", "OCC (SEL AS),", "OCC (SCA AS),", "OCC (MPA AS),",
+    "TAB (TAB STATIC AS),", "SBAB (SBAB DD),", "ADOC (ADOC MOBILE AS),", "PLAB (PLAB PE(N)),", "PLAB (PLAB PE(S)),",
+    "SPF (POLARIS),", "not req", "not reg", "TBC",]
+const part2Options = ["activated", "on-site, patrolling", "on-site, located operator, tallying UAS ID",
+    "located operator, tallying UAS ID", "on-site, linking up with", "confirm tallied UAS ID, taking down operator details",
+    "confirm UAS ID not tallied, will continue to patrol", "stood down", "stood down with nil findings, nil sightings",
+    "stood down after taking down operator details", "CAB [W] MDT", "CAB [E] MDT", "CAB [M] MDT", "PLAB MDT", "SBAB MDT",
+    "TAB MDT", "CAG MDT (T1)", "CAG MDT (T2)", "AETOS", "AETOS (IW1)", "AETOS (IW2)", "AETOS (IW3)", "AETOS (IW4)",
+    "AETOS (CT1)", "AETOS (CT2)", "AETOS (CT3)", "AETOS (CT4)", "Sentosa Island Ranger"]
+const part3Options = ["OCC OC informed", "RC informed by TBCP", "TBCP informed RC", "RC informed by PBCP", "ADOC informed RC",
+    "RC informed by ADOC", "PBCP informed RC", "RC informed by SBCP", "SBCP informed RC", "OCC OC informed by POCC", "POCC informed OCC OC",
+    "203 informed", "CBCP informed", "PBCP informed", "SBCP informed", "TBCP informed", "AFCIC informed", "AOC informed",
+    "CNB informed", "3x Line engaged", "POCC informed by OCC OC", "MSCC informed by OCC OC", "Sentosa Island Ranger informed by OCC OC"]
+const part6Options = ["NIL"]
+const part7Options = ["TBC", "no nearby AAs", "no further det from OCC, no det from other A/S", "no further det from TAB, no det from OCC throughout, no det from other A/S",
+    "no further det from ADOC, no det from OCC throughout, no det from other A/S", "no further det from PLAB, no det from OCC throughout, no det from other A/S",
+    "no further det from SBAB, no det from OCC throughout, no det from other A/S", "no further det from SPF, no det from OCC throughout, no det from other A/S",
+    "since UAS is reg OCC OC will handover operator details to CAAS enforcement, no further det from OCC, no det from other AS",
+    "OCC OC informed RC UAS is reg", "OCC OC informed RC UAS is not reg", "UAS last det dropped off @", "UAS appeared within STW @",
+    "UAS crossed into STW @", "UAS crossed into MTW @"] 
+
+function getReportSection() {
+  var curPos = textarea.selectionStart
+  pretext = textarea.value.substring(0, curPos)
+  var lines = pretext.split('\n')
+
+  for (let i = lines.length - 1; i >= 0; i--) {
+    firstChar = lines[i][0]
+    if (isNumeric(firstChar)) {
+      return firstChar
+    }
+  }
+}
+
+function partOfReport() {
+  var curPos = textarea.selectionStart
+  pretext = textarea.value.substring(0, curPos)
+  var lines = pretext.split('\n')
+
+  // check if first character in current line is ">" character 
+  if (lines[lines.length - 1][0] === ">") {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 
 function LastDetTime() {
@@ -197,6 +243,7 @@ $( function() {
     "PLAB (PLAB PE(N)),",
     "PLAB (PLAB PE(S)),",
     "SPF (POLARIS),",
+    "no nearby AAs",
     "no further det from OCC, no det from other A/S",
     "no further det from TAB, no det from OCC throughout, no det from other A/S",
     "no further det from ADOC, no det from OCC throughout, no det from other A/S",
@@ -207,7 +254,6 @@ $( function() {
     "OCC OC informed",
     "OCC OC informed RC UAS is reg",
     "OCC OC informed RC UAS is not reg",
-    "no nearby AAs",
     "UAS last det dropped off @",
     "UAS appeared within STW @",
     "UAS crossed into STW @",
@@ -278,17 +324,43 @@ $( function() {
   autoFocus: true, 
   position: { of: "#cursorAnchor" }, 
   source: function( request, response ) {
-  // only starts showing suggestions when 2 or more characters are typed
-    if (input.length >= 2){
-      // matcher function to suggest matches only with the word contained
-      var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( input ), "i" );
-          response( $.grep( availableTags, function( item ){
-              return matcher.test( item );
-      }) );
-    } else {
-      $( "#myInput" ).autocomplete( "close" );
+    // only starts showing suggestions if typing on a ">" line AND when 2 or more characters are typed
+    if (!partOfReport()) {
+      return
     }
-    
+    if (input.length < 2) {
+      // close autofill menu if open
+      $( "#myInput" ).autocomplete( "close" );
+      return
+    }
+
+    num = getReportSection()
+
+    switch ( num ) {
+      case "1":
+        availableTags = part1Options
+        break
+      case "2":
+        availableTags = part2Options
+        break
+      case "3":
+        availableTags = part3Options
+        break
+      case "6":
+        availableTags = part6Options
+        break
+      case "7":
+        availableTags = part7Options
+        break
+      default:
+        availableTags = []
+    }
+
+    // matcher function to suggest matches only with the word contained
+    var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( input ), "i" );
+        response( $.grep( availableTags, function( item ){
+            return matcher.test( item );
+    }) );
   },
   focus: function() {
     // prevent value inserted on focus
