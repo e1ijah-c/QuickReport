@@ -1,6 +1,7 @@
 const textarea = document.getElementById('myInput')
 var input = ''
 var menuOpen = false
+var canSpReturn = true
 const part1Options = ["OCC (BEDOK AS),", "OCC (R1S AS),", "OCC (SEL AS),", "OCC (SCA AS),", "OCC (MPA AS),",
     "TAB (TAB STATIC AS),", "SBAB (SBAB DD),", "ADOC (ADOC MOBILE AS),", "PLAB (PLAB PE(N)),", "PLAB (PLAB PE(S)),",
     "SPF (POLARIS),", "not req", "not reg", "TBC",]
@@ -20,7 +21,32 @@ const part7Options = ["TBC", "no nearby AAs", "no further det from OCC, no det f
     "no further det from SBAB, no det from OCC throughout, no det from other A/S", "no further det from SPF, no det from OCC throughout, no det from other A/S",
     "since UAS is reg OCC OC will handover operator details to CAAS enforcement, no further det from OCC, no det from other AS",
     "OCC OC informed RC UAS is reg", "OCC OC informed RC UAS is not reg", "UAS last det dropped off @", "UAS appeared within STW @",
-    "UAS crossed into STW @", "UAS crossed into MTW @"] 
+    "UAS crossed into STW @", "UAS crossed into MTW @", "NIL"] 
+const commands = ["/b1", "/b2", "/b3", "/u1", "/u2", "/u3"]
+
+const report = `1. Reported by (Source) / Location / Telemetry (if any) / Registration
+> 
+
+2. Ground Enforcement:
+> 
+
+3. Info Exchange:
+> 
+
+4. L&R Restrictions:
+> 
+
+5. Disruptor:
+> 
+
+6. Past Detection/s:
+> 
+
+7. Others:
+> Indicative Pilot Location:
+>  `
+
+
 
 function getReportSection() {
   var curPos = textarea.selectionStart
@@ -160,22 +186,26 @@ function specialReturn() {
   var lineAbove = lines[lines.length - 2]
   var firstChar = lineAbove[0]
 
-  if (firstChar === '>' && menuOpen === false) {
-    //add selected item and rejoin whole input together again
-    textarea.value = pretext + ">  " + posttext
-
-    // Set caret position to be one space ahead of the autofilled word
-    textarea.selectionStart = pretext.length + 2
-    textarea.selectionEnd = pretext.length + 2
+  if (menuOpen) {
+    return
   }
+
+  if (firstChar !== '>') {
+    return
+  }
+
+  //add selected item and rejoin whole input together again
+  textarea.value = pretext + ">  " + posttext
+
+  // Set caret position to be one space ahead of the autofilled word
+  textarea.selectionStart = pretext.length + 2
+  textarea.selectionEnd = pretext.length + 2
 }
-
-
 
 textarea.addEventListener('keyup', (event) => { 
   var key = event.key
 
-  if (key === "Enter") {
+  if (key === "Enter" && canSpReturn) {
     specialReturn()
   }
 })
@@ -231,88 +261,7 @@ textarea.addEventListener('mousedown', (event) =>  {
 })
 
 $( function() {
-  var availableTags = [
-    "OCC (BEDOK AS),",
-    "OCC (R1S AS),",
-    "OCC (SEL AS),",
-    "OCC (SCA AS),",
-    "OCC (MPA AS),",
-    "TAB (TAB STATIC AS),",
-    "SBAB (SBAB DD),",
-    "ADOC (ADOC MOBILE AS),",
-    "PLAB (PLAB PE(N)),",
-    "PLAB (PLAB PE(S)),",
-    "SPF (POLARIS),",
-    "no nearby AAs",
-    "no further det from OCC, no det from other A/S",
-    "no further det from TAB, no det from OCC throughout, no det from other A/S",
-    "no further det from ADOC, no det from OCC throughout, no det from other A/S",
-    "no further det from PLAB, no det from OCC throughout, no det from other A/S",
-    "no further det from SBAB, no det from OCC throughout, no det from other A/S",
-    "no further det from SPF, no det from OCC throughout, no det from other A/S",
-    "since UAS is reg OCC OC will handover operator details to CAAS enforcement, no further det from OCC, no det from other AS",
-    "OCC OC informed",
-    "OCC OC informed RC UAS is reg",
-    "OCC OC informed RC UAS is not reg",
-    "UAS last det dropped off @",
-    "UAS appeared within STW @",
-    "UAS crossed into STW @",
-    "UAS crossed into MTW @",
-    "not req",
-    "not reg",
-    "TBC",
-    "RC informed by TBCP",
-    "TBCP informed RC",
-    "RC informed by PBCP",
-    "ADOC informed RC",
-    "RC informed by ADOC",
-    "PBCP informed RC",
-    "RC informed by SBCP",
-    "SBCP informed RC",
-    "OCC OC informed by POCC",
-    "POCC informed OCC OC",
-    "Same as above",
-    "activated",
-    "on-site, patrolling",
-    "on-site, located operator, tallying UAS ID",
-    "located operator, tallying UAS ID",
-    "on-site, linking up with",
-    "confirm tallied UAS ID, taking down operator details",
-    "confirm UAS ID not tallied, will continue to patrol",
-    "stood down",
-    "stood down with nil findings, nil sightings",
-    "stood down after taking down operator details",
-    "CAB [W] MDT",
-    "CAB [E] MDT",
-    "CAB [M] MDT",
-    "PLAB MDT",
-    "SBAB MDT",
-    "TAB MDT",
-    "CAG MDT (T1)",
-    "CAG MDT (T2)",
-    "AETOS",
-    "AETOS (IW1)",
-    "AETOS (IW2)",
-    "AETOS (IW3)",
-    "AETOS (IW4)",
-    "AETOS (CT1)",
-    "AETOS (CT2)",
-    "AETOS (CT3)",
-    "AETOS (CT4)",
-    "203 informed",
-    "CBCP informed",
-    "PBCP informed",
-    "SBCP informed",
-    "TBCP informed",
-    "AFCIC informed",
-    "AOC informed",
-    "CNB informed",
-    "3x Line engaged",
-    "POCC informed by OCC OC",
-    "MSCC informed by OCC OC",
-    "Sentosa Island Ranger informed by OCC OC",
-    "Sentosa Island Ranger"
-  ];
+  var availableTags = [];
   $( "#myInput" )
   .on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -324,16 +273,24 @@ $( function() {
   autoFocus: true, 
   position: { of: "#cursorAnchor" }, 
   source: function( request, response ) {
-    // only starts showing suggestions if typing on a ">" line AND when 2 or more characters are typed
-    if (!partOfReport()) {
-      return
-    }
-    if (input.length < 2) {
+    // only starts showing suggestions if typing on a ">" line AND when 1 or more characters are typed
+    if (input.length < 1) {
       // close autofill menu if open
       $( "#myInput" ).autocomplete( "close" );
       return
     }
+    
+    if (!partOfReport()) {
+      availableTags = commands
+       // matcher function to suggest matches only with the word contained
+        var matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( input ), "i" );
+            response( $.grep( availableTags, function( item ){
+                return matcher.test( item );
+        }) );
+      return
+    }
 
+    // show specific options based on what part of the report is being edited
     num = getReportSection()
 
     switch ( num ) {
@@ -352,8 +309,6 @@ $( function() {
       case "7":
         availableTags = part7Options
         break
-      default:
-        availableTags = []
     }
 
     // matcher function to suggest matches only with the word contained
@@ -375,23 +330,51 @@ $( function() {
     console.log("menu is closed")
   },
   select: function( event, ui ) {
+    var ans = ui.item.value
     var curPos = this.selectionStart
     var pretext = this.value.substring(0, curPos - input.length)
     var posttext = this.value.substring(curPos)
     
     
-    if (ui.item.value === "UAS last det dropped off @") {
+    if (ans === "UAS last det dropped off @") {
       //add selected item and rejoin whole input together again
-      ui.item.value = ui.item.value + " " + LastDetTime()
+      ans = ui.item.value + " " + LastDetTime()
     } 
+
+    switch ( ans ) {
+      case "/b1":
+        ans = "BAZ 1A - Green\n\n" + report
+        break
+      case "/b2":
+        ans = "BAZ 2A - Green\n\n" + report
+        break
+      case "/b3":
+        ans = "BAZ 3A - Green\n\n" + report
+        break
+      case "/u1":
+        ans = "UAS 1A - Green\n\n" + report
+        break
+      case "/u2":
+        ans = "UAS 2A - Green\n\n" + report
+        break
+      case "/u3":
+        ans = "UAS 3A - Green\n\n" + report
+        break
+    }
+
     //add selected item and rejoin whole input together again
-    this.value = pretext + ui.item.value + " " + posttext
+    this.value = pretext + ans + " " + posttext
     input = ""
     console.log("full input: ", input)
     
     // Set caret position to be one space ahead of the autofilled word
-    this.selectionStart = pretext.length + ui.item.value.length + 1
-    this.selectionEnd = pretext.length + ui.item.value.length + 1
+    this.selectionStart = pretext.length + ans.length + 1
+    this.selectionEnd = pretext.length + ans.length + 1
+
+    // Prevent special return function from running when not intended
+    canSpReturn = false
+    setTimeout(function () {canSpReturn = true}, 1000)
+
 
     return false;
     }
