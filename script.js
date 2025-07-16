@@ -10,13 +10,13 @@ const part2Options = ["activated", "on-site, patrolling", "on-site, located oper
     "confirm UAS ID not tallied, will continue to patrol", "stood down", "stood down with nil findings, nil sightings",
     "stood down after taking down operator details", "CAB [W] MDT", "CAB [E] MDT", "CAB [M] MDT", "PLAB MDT", "SBAB MDT",
     "TAB MDT", "CAG MDT (T1)", "CAG MDT (T2)", "AETOS", "AETOS (IW1)", "AETOS (IW2)", "AETOS (IW3)", "AETOS (IW4)",
-    "AETOS (CT1)", "AETOS (CT2)", "AETOS (CT3)", "AETOS (CT4)", "Sentosa Island Ranger"]
+    "AETOS (CT1)", "AETOS (CT2)", "AETOS (CT3)", "AETOS (CT4)", "Sentosa Island Ranger", "SPF", "PCG", "MPA"]
 const part3Options = ["OCC OC informed", "RC informed by TBCP", "TBCP informed RC", "RC informed by PBCP", "ADOC informed RC",
     "RC informed by ADOC", "PBCP informed RC", "RC informed by SBCP", "SBCP informed RC", "OCC OC informed by POCC", "POCC informed OCC OC",
     "203 informed", "CBCP informed", "PBCP informed", "SBCP informed", "TBCP informed", "AFCIC informed", "AOC informed",
     "CNB informed", "3x Line engaged", "POCC informed by OCC OC", "MSCC informed by OCC OC", "Sentosa Island Ranger informed by OCC OC"]
 const part6Options = ["NIL"]
-const part7Options = ["TBC", "no nearby AAs", "no further det from OCC, no det from other A/S", "no further det from TAB, no det from OCC throughout, no det from other A/S",
+const part7Options = ["Same as above", "TBC", "no nearby AAs", "no further det from OCC, no det from other A/S", "no further det from TAB, no det from OCC throughout, no det from other A/S",
     "no further det from ADOC, no det from OCC throughout, no det from other A/S", "no further det from PLAB, no det from OCC throughout, no det from other A/S",
     "no further det from SBAB, no det from OCC throughout, no det from other A/S", "no further det from SPF, no det from OCC throughout, no det from other A/S",
     "since UAS is reg OCC OC will handover operator details to CAAS enforcement, no further det from OCC, no det from other AS",
@@ -45,8 +45,6 @@ const report = `1. Reported by (Source) / Location / Telemetry (if any) / Regist
 7. Others:
 > Indicative Pilot Location:
 >  `
-
-
 
 function getReportSection() {
   var curPos = textarea.selectionStart
