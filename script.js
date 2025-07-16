@@ -50,10 +50,10 @@ function checkLineEmpty(line) {
   trimmedLine = line.trim()
   console.log(trimmedLine)
 
-  if (trimmedLine.length > 1) {
-    return false
-  } else {
+  if (trimmedLine.length === 1) {
     return true
+  } else {
+    return false
   }
 }
 
@@ -203,15 +203,25 @@ function specialReturn() {
     return
   }
 
-  console.log(lines)
-  console.log(lines[-1])
 
-  //add selected item and rejoin whole input together again
-  textarea.value = pretext + ">  " + posttext
 
-  // Set caret position to be one space ahead of the autofilled word
-  textarea.selectionStart = pretext.length + 2
-  textarea.selectionEnd = pretext.length + 2
+  if (checkLineEmpty(lines[lines.length - 2])) {
+    pretext = textarea.value.substring(0, curPos - lines[lines.length -2].length - 1)
+
+    textarea.value = pretext + posttext
+    textarea.selectionStart = pretext.length 
+    textarea.selectionEnd = pretext.length 
+
+  } else {
+    //add selected item and rejoin whole input together again
+    textarea.value = pretext + ">  " + posttext
+
+    // Set caret position to be one space ahead of the autofilled word
+    textarea.selectionStart = pretext.length + 2
+    textarea.selectionEnd = pretext.length + 2
+  }
+
+  
 }
 
 textarea.addEventListener('keyup', (event) => { 
