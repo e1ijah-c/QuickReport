@@ -46,6 +46,17 @@ const report = `1. Reported by (Source) / Location / Telemetry (if any) / Regist
 > Indicative Pilot Location:
 >  `
 
+function checkLineEmpty(line) {
+  trimmedLine = line.trim()
+  console.log(trimmedLine)
+
+  if (trimmedLine.length > 1) {
+    return false
+  } else {
+    return true
+  }
+}
+
 function getReportSection() {
   var curPos = textarea.selectionStart
   pretext = textarea.value.substring(0, curPos)
@@ -191,6 +202,9 @@ function specialReturn() {
   if (firstChar !== '>') {
     return
   }
+
+  console.log(lines)
+  console.log(lines[-1])
 
   //add selected item and rejoin whole input together again
   textarea.value = pretext + ">  " + posttext
