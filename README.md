@@ -46,8 +46,6 @@ More commands may be added in future.
 
 Understand that all data part of the report will begin with an "```>```" character. 
 
-Case 1 — Filled line:
-
 Pressing <kbd>Enter</kbd> on the following line (caret is at the end): 
 
 ```
