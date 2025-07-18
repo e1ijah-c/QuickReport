@@ -62,6 +62,13 @@ Output:
 ```
 
 
+# ⛏️ Useful Resources
+> Resources that were extremely helpful for this project's development.
+
+- [ jQuery Autocomplete Widget ](https://automaticaddison.com/howhttps://jqueryui.com/autocomplete/#multiple) which was used as the backbone and foundation for the autofill feature. 
+- [ MDN Web Docs ](https://developer.mozilla.org/en-US/docs/Web/JavaScript) for Javascript is what I found to be among the best documentation websites — strongly written and comprehensive. 
+
+
 
 
 
