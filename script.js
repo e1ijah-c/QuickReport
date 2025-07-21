@@ -46,6 +46,7 @@ const report = `1. Reported by (Source) / Location / Telemetry (if any) / Regist
 > Indicative Pilot Location:
 >  `
 
+
 function checkLineEmpty(line) {
   trimmedLine = line.trim()
   console.log(trimmedLine)
@@ -361,22 +362,22 @@ $( function() {
 
     switch ( ans ) {
       case "/b1":
-        ans = "BAZ 1A - Green\n\n" + report
+        ans = "BAZ 1A - Green\n\n" + report + '\n\n'
         break
       case "/b2":
-        ans = "BAZ 2A - Green\n\n" + report
+        ans = "BAZ 2A - Green\n\n" + report + '\n\n'
         break
       case "/b3":
-        ans = "BAZ 3A - Green\n\n" + report
+        ans = "BAZ 3A - Green\n\n" + report + '\n\n'
         break
       case "/u1":
-        ans = "UAS 1A - Green\n\n" + report
+        ans = "UAS 1A - Green\n\n" + report + '\n\n'
         break
       case "/u2":
-        ans = "UAS 2A - Green\n\n" + report
+        ans = "UAS 2A - Green\n\n" + report + '\n\n'
         break
       case "/u3":
-        ans = "UAS 3A - Green\n\n" + report
+        ans = "UAS 3A - Green\n\n" + report + '\n\n'
         break
     }
 
