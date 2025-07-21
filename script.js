@@ -393,7 +393,6 @@ $( function() {
     canSpReturn = false
     setTimeout(function () {canSpReturn = true}, 1000)
 
-
     return false;
     }
   });

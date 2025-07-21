@@ -6,7 +6,7 @@ body, html {
 
 #cursorAnchor {
     position: absolute;
-    background-color: transparent; 
+    background-color: blue; 
     pointer-events: none; /* Allows clicks to pass through to the input */
     height: 8px;
     width: 8px;
