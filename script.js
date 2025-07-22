@@ -1,5 +1,3 @@
-const { exit } = require("process")
-
 const textarea = document.getElementById('myInput')
 var input = ''
 var menuOpen = false
