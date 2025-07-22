@@ -55,7 +55,8 @@ function prioritiseInArray(search_list, search_term) {
 
   if (index > 0) {
     let valueToMove = search_list.splice(index, 1)[0]
-    return search_list.unshift(valueToMove)
+    search_list.unshift(valueToMove)
+    return search_list
   } else {
     console.log("Error finding term.")
     return search_list
