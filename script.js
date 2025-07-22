@@ -57,8 +57,8 @@ function prioritiseInArray(search_list, search_term) {
     let valueToMove = search_list.splice(index, 1)[0]
     return search_list.unshift(valueToMove)
   } else {
-    console.log("could not find term")
-    return part2Options
+    console.log("Error finding term.")
+    return search_list
   }
 }
 
@@ -66,9 +66,11 @@ function smartTeamPriorityArray() {
   let curPos = textarea.selectionStart
   let pretext = textarea.value.substring(0, curPos)
   let lines = pretext.split('\n')
-  let listOptions = [...part2Options]
+  var listOptions = [...part2Options]
+  var allLines
   
   console.log("Initial list options: " + listOptions)
+  console.log("Initial allLines var: " + allLines)
 
   try {
     for (let i = lines.length - 1; i >= 0; i--) {
