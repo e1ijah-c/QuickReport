@@ -23,6 +23,9 @@ const part7Options = ["Same as above", "TBC", "no nearby AAs", "no further det f
     "OCC OC informed RC UAS is reg", "OCC OC informed RC UAS is not reg", "UAS last det dropped off @", "UAS appeared within STW @",
     "UAS crossed into STW @", "UAS crossed into MTW @", "NIL"] 
 const commands = ["/b1", "/b2", "/b3", "/u1", "/u2", "/u3"]
+const teamsList = ["CAB [W] MDT", "CAB [E] MDT", "CAB [M] MDT", "PLAB MDT", "SBAB MDT",
+    "TAB MDT", "CAG MDT (T1)", "CAG MDT (T2)", "AETOS (IW1)", "AETOS (IW2)", "AETOS (IW3)", "AETOS (IW4)",
+    "AETOS (CT1)", "AETOS (CT2)", "AETOS (CT3)", "AETOS (CT4)", "Sentosa Island Ranger", "SPF", "PCG", "MPA"]
 
 const report = `1. Reported by (Source) / Location / Telemetry (if any) / Registration
 > 
@@ -46,6 +49,56 @@ const report = `1. Reported by (Source) / Location / Telemetry (if any) / Regist
 > Indicative Pilot Location:
 >  `
 
+function prioritiseInArray(search_list, search_term) { 
+
+  let index = search_list.indexOf(search_term)
+
+  if (index > 0) {
+    let valueToMove = search_list.splice(index, 1)[0]
+    return search_list.unshift(valueToMove)
+  } else {
+    console.log("could not find term")
+    return part2Options
+  }
+}
+
+function smartTeamPriorityArray() {
+  let curPos = textarea.selectionStart
+  let pretext = textarea.value.substring(0, curPos)
+  let lines = pretext.split('\n')
+  let allLines = []
+  let listOptions = part2Options
+
+  try {
+    for (let i = lines.length - 1; i >= 0; i--) {
+      firstChar = lines[i][0]
+      if (isNumeric(firstChar)) {
+        break
+      } else {
+        allLines = allLines.concat(lines[i])
+      }
+    }
+
+    let allLinesString = allLines.join(" ")
+    console.log(allLinesString)
+
+    for (let w = 0; w < teamsList.length; w++) {
+      let team = teamsList[w]
+      if (allLinesString.includes(team)) {
+        console.log(team)
+        listOptions = prioritiseInArray(listOptions, team)
+      }
+    }
+
+    console.log(listOptions)
+    return listOptions
+  } 
+  catch (error) {
+    console.log("could not prioritise activated teams.")
+    return part2Options
+  }
+  
+}
 
 function checkLineEmpty(line) {
   trimmedLine = line.trim()
@@ -179,6 +232,7 @@ function LastDetTime() {
     } 
   }
   catch (error) {
+    console.log("could not auto calculate last det time.")
     return "";
   }
 }
@@ -317,7 +371,7 @@ $( function() {
         availableTags = part1Options
         break
       case "2":
-        availableTags = part2Options
+        availableTags = smartTeamPriorityArray()
         break
       case "3":
         availableTags = part3Options
