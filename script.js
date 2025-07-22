@@ -455,7 +455,7 @@ $( function() {
 
     // Prevent special return function from running when not intended
     canSpReturn = false
-    setTimeout(function () {canSpReturn = true}, 1000)
+    setTimeout(function () {canSpReturn = true}, 100)
 
     return false;
     }
