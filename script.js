@@ -63,11 +63,12 @@ function prioritiseInArray(search_list, search_term) {
 }
 
 function smartTeamPriorityArray() {
-  let curPos = textarea.selectionStart
-  let pretext = textarea.value.substring(0, curPos)
-  let lines = pretext.split('\n')
-  let listOptions = [...part2Options]
-  let allLines = []
+  var curPos = textarea.selectionStart
+  var pretext = textarea.value.substring(0, curPos)
+  var lines = pretext.split('\n')
+  var listOptions = [...part2Options];
+  var allLines = [];
+  var allLinesString = '';
   
   console.log("Initial list options: " + listOptions)
   console.log("Initial allLines var: " + allLines)
@@ -86,7 +87,7 @@ function smartTeamPriorityArray() {
       }
     }
 
-    let allLinesString = allLines.join(' ')
+    allLinesString = allLines.join(' ')
     console.log("Combined string: " + allLinesString)
 
     for (let w = 0; w < teamsList.length; w++) {
