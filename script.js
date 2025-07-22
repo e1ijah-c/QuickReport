@@ -50,8 +50,8 @@ const report = `1. Reported by (Source) / Location / Telemetry (if any) / Regist
 >  `
 
 function prioritiseInArray(search_list, search_term) { 
-
   let index = search_list.indexOf(search_term)
+  console.log("Search Term Index: " + index)
 
   if (index > 0) {
     let valueToMove = search_list.splice(index, 1)[0]
@@ -68,6 +68,7 @@ function smartTeamPriorityArray() {
   let lines = pretext.split('\n')
   let allLines = []
   let listOptions = part2Options
+  console.log("Initial list options: " + listOptions)
 
   try {
     for (let i = lines.length - 1; i >= 0; i--) {
@@ -80,7 +81,7 @@ function smartTeamPriorityArray() {
     }
 
     let allLinesString = allLines.join(" ")
-    console.log(allLinesString)
+    console.log("Combined string: " + allLinesString)
 
     for (let w = 0; w < teamsList.length; w++) {
       let team = teamsList[w]
@@ -90,11 +91,11 @@ function smartTeamPriorityArray() {
       }
     }
 
-    console.log(listOptions)
+    console.log("New list options: " + listOptions)
     return listOptions
   } 
   catch (error) {
-    console.log("could not prioritise activated teams.")
+    console.log("Error: could not prioritise activated teams.")
     return part2Options
   }
   
