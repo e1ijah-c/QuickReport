@@ -1,3 +1,5 @@
+const { exit } = require("process")
+
 const textarea = document.getElementById('myInput')
 var input = ''
 var menuOpen = false
@@ -77,15 +79,15 @@ function smartTeamPriorityArray() {
     for (let i = lines.length - 1; i >= 0; i--) {
       let firstChar = lines[i][0]
       let words = lines[i].split(" ")
+      console.log("words List: " + words)
       if (isNumeric(firstChar)) {
         break
       } else {
-        for (t = 0; t < words.length; t++) {
-          allLines = allLines.push(words[t])
-        }
-        console.log("Final allLines: " + allLines)
+        allLines = allLines.concat(...words)
       }
     }
+
+    console.log("Final allLines: " + allLines)
 
     allLinesString = allLines.join(' ')
     console.log("Combined string: " + allLinesString)
