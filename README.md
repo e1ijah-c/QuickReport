@@ -12,6 +12,7 @@ Thus, this site aims to address several factors which reduce the speed of which 
 3. _**Command prompts**_ — to instantly generate fresh report templates.
 4. _**Data persistance**_ — the site will save input so that notes aren't lost when reloading.
 5. _**Special return**_ — automatically produces a **">"** character when making a new line in the report.
+6. _**Smart priority suggestions**_ — makes activated teams top priority when providing suggestions 
 
 # ⌨️ Usage 
 
