@@ -66,19 +66,20 @@ function smartTeamPriorityArray() {
   let curPos = textarea.selectionStart
   let pretext = textarea.value.substring(0, curPos)
   let lines = pretext.split('\n')
-  var listOptions = [...part2Options]
-  var allLines
+  let listOptions = [...part2Options]
+  let allLines = []
   
   console.log("Initial list options: " + listOptions)
   console.log("Initial allLines var: " + allLines)
 
   try {
     for (let i = lines.length - 1; i >= 0; i--) {
-      firstChar = lines[i][0]
+      let firstChar = lines[i][0]
+      let line = lines[i]
       if (isNumeric(firstChar)) {
         break
       } else {
-        allLines = allLines.concat(lines[i])
+        allLines = allLines.push(...line)
       }
     }
 
