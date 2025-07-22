@@ -75,15 +75,18 @@ function smartTeamPriorityArray() {
   try {
     for (let i = lines.length - 1; i >= 0; i--) {
       let firstChar = lines[i][0]
-      let line = lines[i]
+      let words = lines[i].split(" ")
       if (isNumeric(firstChar)) {
         break
       } else {
-        allLines = allLines.push(...line)
+        for (t = 0; t < words.length; t++) {
+          allLines = allLines.push(words[t])
+        }
+        console.log("Final allLines: " + allLines)
       }
     }
 
-    let allLinesString = allLines.join(" ")
+    let allLinesString = allLines.join(' ')
     console.log("Combined string: " + allLinesString)
 
     for (let w = 0; w < teamsList.length; w++) {
