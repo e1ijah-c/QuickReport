@@ -68,6 +68,7 @@ function smartTeamPriorityArray() {
   let lines = pretext.split('\n')
   let allLines = []
   let listOptions = part2Options
+  
   console.log("Initial list options: " + listOptions)
 
   try {
@@ -95,7 +96,7 @@ function smartTeamPriorityArray() {
     return listOptions
   } 
   catch (error) {
-    console.log("Error: could not prioritise activated teams.")
+    console.log(error)
     return part2Options
   }
   
@@ -233,7 +234,7 @@ function LastDetTime() {
     } 
   }
   catch (error) {
-    console.log("could not auto calculate last det time.")
+    console.log("Error: could not auto calculate last det time.")
     return "";
   }
 }
