@@ -16,7 +16,7 @@ const part3Options = ["OCC OC informed", "RC informed by TBCP", "TBCP informed R
     "203 informed", "CBCP informed", "PBCP informed", "SBCP informed", "TBCP informed", "AFCIC informed", "AOC informed",
     "CNB informed", "3x Line engaged", "POCC informed by OCC OC", "MSCC informed by OCC OC", "Sentosa Island Ranger informed by OCC OC"]
 const part6Options = ["NIL", "TBC"]
-const part7Options = ["Same as above", "TBC", "no nearby AAs", "no further det from OCC, no det from other A/S", "no further det from TAB, no det from OCC throughout, no det from other A/S",
+const part7Options = ["SAME AS ABOVE", "TBC", "no nearby AAs", "no further det from OCC, no det from other A/S", "no further det from TAB, no det from OCC throughout, no det from other A/S",
     "no further det from ADOC, no det from OCC throughout, no det from other A/S", "no further det from PLAB, no det from OCC throughout, no det from other A/S",
     "no further det from SBAB, no det from OCC throughout, no det from other A/S", "no further det from SPF, no det from OCC throughout, no det from other A/S",
     "since UAS is reg OCC OC will handover operator details to CAAS enforcement, no further det from OCC, no det from other AS",
