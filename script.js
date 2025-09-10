@@ -4,17 +4,17 @@ var menuOpen = false
 var canSpReturn = true
 const part1Options = ["OCC (BEDOK AS),", "OCC (R1S AS),", "OCC (SEL AS),", "OCC (SCA AS),", "OCC (MPA AS),",
     "TAB (TAB STATIC AS),", "SBAB (SBAB DD),", "ADOC (ADOC MOBILE AS),", "PLAB (PLAB PE(N)),", "PLAB (PLAB PE(S)),",
-    "SPF (POLARIS),", "not req", "not reg", "TBC",]
+    "SPF (POLARIS),", "still det", "not req", "not reg", "TBC"]
 const part2Options = ["activated", "on-site, patrolling", "on-site, located operator, tallying UAS ID",
     "located operator, tallying UAS ID", "on-site, linking up with", "confirm tallied UAS ID, taking down operator details",
     "confirm UAS ID not tallied, will continue to patrol", "stood down", "stood down with nil findings, nil sightings",
     "stood down after taking down operator details", "CAB [W] MDT", "CAB [E] MDT", "CAB [M] MDT", "PLAB MDT", "SBAB MDT",
-    "TAB MDT", "CAG MDT (T1)", "CAG MDT (T2)", "AETOS", "AETOS (IW1)", "AETOS (IW2)", "AETOS (IW3)", "AETOS (IW4)",
+    "TAB MDT", "CAG MDT (T1)", "CAG MDT (T2)", "AETOS", "AETOS (IW1)", "AETOS (IW2)", "AETOS (IW3)", "AETOS (IW4)", "AETOS (IW5)", "AETOS (IW6)", 
     "AETOS (CT1)", "AETOS (CT2)", "AETOS (CT3)", "AETOS (CT4)", "Sentosa Island Ranger", "SPF", "PCG", "MPA"]
 const part3Options = ["OCC OC informed", "RC informed by TBCP", "TBCP informed RC", "RC informed by PBCP", "ADOC informed RC",
-    "RC informed by ADOC", "PBCP informed RC", "RC informed by SBCP", "SBCP informed RC", "OCC OC informed by POCC", "POCC informed OCC OC",
+    "RC informed by ADOC", "PBCP informed RC", "RC informed by SBCP", "SBCP informed RC", "POCC informed by OCC OC", "OCC OC informed by POCC", "POCC informed OCC OC",
     "203 informed", "CBCP informed", "PBCP informed", "SBCP informed", "TBCP informed", "AFCIC informed", "AOC informed",
-    "CNB informed", "3x Line engaged", "POCC informed by OCC OC", "MSCC informed by OCC OC", "Sentosa Island Ranger informed by OCC OC"]
+    "CNB informed", "3x Line engaged", "MSCC informed by OCC OC", "Sentosa Island Ranger informed by OCC OC"]
 const part6Options = ["NIL", "TBC"]
 const part7Options = ["SAME AS ABOVE", "TBC", "no nearby AAs", "no further det from OCC, no det from other A/S", "no further det from TAB, no det from OCC throughout, no det from other A/S",
     "no further det from ADOC, no det from OCC throughout, no det from other A/S", "no further det from PLAB, no det from OCC throughout, no det from other A/S",
